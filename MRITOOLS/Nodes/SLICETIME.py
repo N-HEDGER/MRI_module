@@ -36,7 +36,8 @@ def SLICETIMER(TR):
 
 	#--- 3) Prompt user for directory containing DICOM FILES
 
-	NIFTIDIR=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)')
+	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)')
+	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 
 	#--- 3) Move to directory
 
