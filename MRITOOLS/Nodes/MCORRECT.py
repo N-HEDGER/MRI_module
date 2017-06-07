@@ -30,6 +30,7 @@ def MCORRECTOR():
 	import os
 	from glob import glob
 	import nipype.interfaces.fsl as fsl
+	import nipype.interfaces.utility as util
 
 	#--- 2)  Record intial working directory
 
@@ -46,23 +47,27 @@ def MCORRECTOR():
 
 	#--- 4) Set up motion correction node
 
-	motion_correct = pe.Node(interface=fsl.MCFLIRT(save_mats=True,save_plots=True,interpolation='spline'),name='realign')
+	motion_correct = pe.Node(interface=fsl.MCFLIRT(save_mats=True,save_plots=True,interpolation='spline'),name='MCORRECTED')
 	motion_correct.inputs.in_file=NIFTIFILE
 
 	#--- 5) Set up plotting node
 	plot_motion = pe.Node(interface=fsl.PlotMotionParams(in_source='fsl'),name='plot_motion')
 	plot_motion.iterables = ('plot_type', ['rotations', 'translations', 'displacement'])
 
+	#--- 5) Utility output node
+	outputnode = pe.Node(interface=util.IdentityInterface(fields=['mcorrected_files']),name='outputnode')
+
 	
 	#--- 6) Set up workflow
 
-	workflow = pe.Workflow(name='SLICETIMER')
+	workflow = pe.Workflow(name='MCORRECTOR')
 	workflow.base_dir = NIFTIDIR
 
 
 	#--- 7) Connect nodes.
 
 	workflow.connect(motion_correct, 'par_file', plot_motion, 'in_file')
+	workflow.connnect(motion_correct,'out_file', outputnode,'mcorrected_files')
 
 
 	workflow.write_graph(graph2use='exec')
