@@ -47,7 +47,7 @@ def MCORRECTOR():
 	#--- 4) Set up motion correction node
 
 	motion_correct = pe.Node(interface=fsl.MCFLIRT(save_mats=True,save_plots=True,interpolation='spline'),name='realign')
-	motion_correct.in_file=NIFTIFILE
+	motion_correct.inputs.in_file=NIFTIFILE
 
 	#--- 5) Set up plotting node
 	plot_motion = pe.Node(interface=fsl.PlotMotionParams(in_source='fsl'),name='plot_motion')

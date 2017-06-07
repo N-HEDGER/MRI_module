@@ -50,7 +50,7 @@ def SLICETIMER(TR):
 	slicetimer=pe.Node(interface=fslp.SliceTimer(),name='SLICETIMED')
 	slicetimer.inputs.interleaved = True
 	slicetimer.inputs.time_repetition = float(TR)
-	slicetimer.in_file=NIFTIFILE
+	slicetimer.inputs.in_file=NIFTIFILE
 
 
 	#--- 7) Set up workflow
