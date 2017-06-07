@@ -22,7 +22,7 @@ Created on Thu Apr 13 16:33:40 2017
 
 #--- 
 
-def EXTRACTER():
+def REGISTER():
 	#--- 1)  Import modules
 	import nipype.pipeline.engine as pe
 	import matplotlib
