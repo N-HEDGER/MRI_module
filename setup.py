@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages
 import MRITOOLS
 
-VERSION = MRITOOLS.__version__
 
 def readme():
     with open('README.md') as f:
@@ -14,7 +13,7 @@ install_requires = [
 
 setup(
     name='MRITOOLS',
-    version=VERSION,
+    version=1.0,
     description='Python package for fMRI data processing',
     long_description=readme(),
     requires=install_requires,
