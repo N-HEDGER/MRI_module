@@ -26,6 +26,6 @@ setup(
     url='https://github.com/N-HEDGER',
     author='Nick Hedger',
     license='MIT',
-    platforms='Linux, Mac OS',
+    platforms='Linux, Mac OS, fMRI VirtualBox VM',
     packages=find_packages(),
 zip_safe=False)
