@@ -5,15 +5,14 @@ Created on Weds June 07 13:37:40 2017
 @author: naah1g08
 """
 #--- Goal of the function:
-# Phase 1 of pre-processing
-# Provide wrapper for fsl slicetimer and plot motion parameters
-# Inputs: directory of DICOM files.
+# Phase x of pre-processing
+# Provide wrapper for fsl slicetimer
+# Inputs: Nifti file
 # Outputs:
 # 1) / SLICETIMED: slice time corrected nifti file.
 
 
-
-# Requires: nipype, dcm2nii and fsl
+# Requires: nipype, and fsl
 
 
 #--- Details
@@ -37,7 +36,7 @@ def SLICETIMER(TR):
 
 	#--- 3) Prompt user for directory containing DICOM FILES
 
-	NIFTIDIR=raw_input('Please drag in the nifti\n file you wish to convert\n(ensure there is no blank space at the end)')
+	NIFTIDIR=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)')
 
 	#--- 3) Move to directory
 
