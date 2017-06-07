@@ -8,11 +8,11 @@ In order to use the analysis tools, you will first need to prepare a system. For
 
 ## 1) Use one of the linux machines in the PG hub.
 
-These systems are already prepared and they are equipped with memory specifications that will exceed your own personal computer. Specifications are listed [here] (/Hardware)
+These systems are already prepared and they are equipped with memory specifications that will exceed your own personal computer. Specifications are listed [here](/Hardware)
 
 ## 2) Download the fMRI Virtual Machine
 
-I have prepared a virtual linux machine that will operate on a windows or Mac OS. It's specifications and installation instructions are provided [here] (/Hardware):  
+I have prepared a virtual linux machine that will operate on a windows or Mac OS. It's specifications and installation instructions are provided [here](/Hardware):  
 
 
 ## 3) Prepare your own system
