@@ -34,7 +34,8 @@ To access these tools:
 * To call this function, in the ipython terminal type:
 
 ```python
-run CONVERTER
+from MRITOOLS.Nodes import CONVERTER
+CONVERTER()
 ```
 
 * You will be prompted to input a directory containing the DICOM folders you wish to convert. To do this, navigate to the directory in the finder/ file explorer, drag it into the terminal and press enter.
@@ -69,7 +70,8 @@ run CONVERTER
 * To call this function, in the ipython terminal type:
 
 ```python
-run EXTRACTER
+from MRITOOLS.Nodes import EXTRACTER
+EXTRACTER()
 ```
 
 * You will be prompted to input the nifti file you wish to extract. To do this, navigate to the file in the finder/ file explorer, drag it into the terminal and press enter.
@@ -78,7 +80,7 @@ run EXTRACTER
 
 * Lastly, you will be asked for the *threshold gradient* [-1 - +1]. This determines the vertical gradient of the thresholding. Positive values give larger outline at the bottom and negative values give larger outline at the top. As a general rule of thumb, this value is almost always negative. This is because the reorientation to MNI space is already applied and regardless of cropping, there tends to be more non brain tissue towards the bottom of the volume (because of neck tissue).
 
-* A new directory will be created in the input directory called *'CONVERTER'* containing the outputs.
+* A new directory will be created in the input directory called *'EXTRACTER'* containing the outputs.
 
 1. / REORIENTED - Reoriented file
 
@@ -127,7 +129,8 @@ will result in the following folder structure, each folder containing the result
 * To call this function, in the ipython terminal type:
 
 ```python
-run REGISTER
+from MRITOOLS.Nodes import REGISTER
+REGISTER()
 ```
 
 * You will be prompted to input the nifti file you wish to register. To do this, navigate to the file in the finder/ file explorer, drag it into the terminal and press enter.
