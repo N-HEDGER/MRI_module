@@ -67,7 +67,7 @@ def MCORRECTOR():
 	#--- 7) Connect nodes.
 
 	workflow.connect(motion_correct, 'par_file', plot_motion, 'in_file')
-	workflow.connnect(motion_correct,'out_file', outputnode,'mcorrected_files')
+	workflow.connect(motion_correct,'out_file', outputnode,'mcorrected_files')
 
 
 	workflow.write_graph(graph2use='exec')
