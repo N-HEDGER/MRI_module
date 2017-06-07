@@ -56,7 +56,7 @@ def MCORRECTOR():
 	#--- 6) Set up workflow
 
 	workflow = pe.Workflow(name='SLICETIMER')
-	workflow.base_dir = DICOMDIR
+	workflow.base_dir = NIFTIDIR
 
 
 	#--- 7) Connect nodes.
