@@ -1,4 +1,6 @@
 #--- 1)  Import modules
+
+
 from __future__ import print_function
 from __future__ import division
 from builtins import str
@@ -27,6 +29,9 @@ import nipype.pipeline.engine as pe          # pypeline engine
 import nipype.interfaces.freesurfer as fs    # freesurfer
 import nipype.interfaces.spm as spm
 
+tolist = lambda x: [x]
+highpass_operand = lambda x:'-bptf %.10f -1'%x
+
 
 INITDIR=os.getcwd();
 
@@ -42,6 +47,14 @@ os.chdir(DICOMDIR)
 
 
 #--- 4) Set up converter node for conversion to nifti
+
+
+
+inputnode = pe.Node(interface=util.IdentityInterface(fields=['fwhm','highpass']),name='inputspec')
+inputnode.inputs.fwhm=float(5)
+inputnode.inputs.highpass=float(18)
+
+
 
 converter=pe.Node(interface=dcm2nii.Dcm2nii(),name='CONVERTED')
 converter.inputs.source_dir=DICOMDIR
@@ -89,11 +102,43 @@ workflow.connect(motion_correct, 'par_file', plot_motion, 'in_file')
 
 #--- 11) Extract
 extracter=pe.Node(interface=fsl.BET(),name='EXTRACTED')
-extracter.inputs.frac=float(0.4)
+extracter.inputs.frac=float(0.6)
 extracter.inputs.mask=bool(1)
 extracter.inputs.functional=bool(1)
 
 workflow.connect(despiker, 'out_file', extracter, 'in_file')
+
+#--- 11) Smooth
+smoother=pe.Node(interface=afni.BlurInMask(),name='SMOOTHED')
+smoother.inputs.outputtype='NIFTI_GZ'
+
+workflow.connect(inputnode, 'fwhm', smoother, 'fwhm')
+workflow.connect(extracter, 'out_file', smoother, 'in_file')
+workflow.connect(extracter, 'mask_file', smoother, 'mask')
+
+
+#--- 11) Highpass filter
+
+# Filtering node
+highpass = pe.Node(interface=fsl.ImageMaths(suffix='_tempfilt'),name='highpass')
+
+workflow.connect(inputnode, ('highpass', highpass_operand), highpass, 'op_string')
+workflow.connect(smoother, 'out_file', highpass, 'in_file')
+
+# Need to add back the mean removed by FSL
+meanfunc = pe.Node(interface=fsl.ImageMaths(op_string='-Tmean',suffix='_mean'),name='meanfunc')
+workflow.connect(smoother, 'out_file', meanfunc, 'in_file')
+
+addmean = pe.Node(interface=fsl.BinaryMaths(operation='add'),name='addmean')
+
+workflow.connect(highpass, 'out_file', addmean, 'in_file')
+workflow.connect(meanfunc, 'out_file', addmean, 'operand_file')
+
+outputnode = pe.Node(interface=util.IdentityInterface(fields=['highpassed_files']),name='outputnode')
+
+workflow.connect(addmean, 'out_file', outputnode, 'highpassed_files')
+
+
 
 
 def bplot(in_file,in_file2,in_file3):
