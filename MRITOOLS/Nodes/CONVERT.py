@@ -27,6 +27,7 @@ Created on Thu Apr 13 16:33:40 2017
 #--- 
 
 def CONVERTER():
+	
 	#--- 1)  Import modules
 	import nipype.interfaces.dcm2nii as dcm2nii
 	import nipype.pipeline.engine as pe

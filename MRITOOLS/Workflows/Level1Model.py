@@ -15,7 +15,7 @@ import matplotlib
 
 specify_model = pe.Node(interface=model.SpecifyModel(), name="specify_model")
 specify_model.inputs.input_units = 'secs'
-specify_model.inputs.functional_runs = ['/Users/naah1g08/Desktop/MRI/ST0/SE3/PREPROC/addmean/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz']
+specify_model.inputs.functional_runs = ['/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/ADDMEAN/mapflow/_ADDMEAN1/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz']
 specify_model.inputs.time_repetition = 2
 specify_model.inputs.high_pass_filter_cutoff = 90.
 specify_model.inputs.event_files=glob.glob('/Users/naah1g08/Desktop/MRI/ST0/SE3/Events/*')
@@ -40,7 +40,7 @@ Designer.inputs.contrasts=[cont1, cont2, cont3, cont4]
 Model=pe.Node(interface=fsl.FEATModel(),name='Model')
 
 fgls=pe.Node(interface=fsl.FILMGLS(),name='GLS')
-fgls.inputs.in_file='/Users/naah1g08/Desktop/MRI/ST0/SE3/PREPROC/addmean/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz'
+fgls.inputs.in_file='/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/ADDMEAN/mapflow/_ADDMEAN1/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz'
 #fgls.inputs.mask_size=0
 #fgls.inputs.threshold=0
 
@@ -57,7 +57,7 @@ workflow.connect(Model,'con_file',fgls,'tcon_file')
 def plot(in_file):
 	from nilearn import image
 	from nilearn import plotting
-	display=plotting.plot_stat_map(stat_map_img=in_file,black_bg=bool(1),display_mode='z',cut_coords=10)
+	display=plotting.plot_stat_map(stat_map_img=in_file,black_bg=bool(1),display_mode='z',cut_coords=20,threshold=float(2.3))
 
 
 
