@@ -32,6 +32,7 @@ def EXTRACTER():
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
 	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)')
+	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	frac=input('Please input the fractional ansiotropy threshold \n in the range [0-1]')
 	grad=input('Please input the gradient \n in the range [-1 1]')
@@ -83,19 +84,21 @@ def EXTRACTER():
 	def bplot(in_file,in_file2,in_file3):
 		from nilearn import image
 		from nilearn import plotting
+		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		if niftifiledim == 3:
-			print "Structural image detected. Displaying full image"
-			display=plotting.plot_anat(in_file2, title = "Extraction overlayed on original")		
+			display=plotting.plot_anat(in_file2)		
 			display.add_contours(in_file,filled=True, alpha=0.5,levels=[0.2], colors='b')
 			display.add_edges(in_file3)
+			matplotlib.pyplot.show()
 		else:
 			print "Functional image detected. Displaying first volume"
 			firstim=image.index_img(in_file, 0)
 			firstim2=image.index_img(in_file2, 0)
-			display=plotting.plot_anat(firstim2, title = "Extraction overlayed on original")	
+			display=plotting.plot_anat(firstim2)	
 			display.add_contours(firstim,filled=True, alpha=0.5,levels=[0.2], colors='b')
 			display.add_edges(in_file3)
+			matplotlib.pyplot.show()
 		return niftifiledim
 
 
@@ -168,6 +171,7 @@ def VERBOSE_EXTRACTER():
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
 	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)')
+	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	frac=list(numpy.linspace(start=0,stop=1,num=6))
 	grad=list(numpy.linspace(start=-1,stop=1,num=6))
@@ -218,17 +222,18 @@ def VERBOSE_EXTRACTER():
 	def bplot(in_file,in_file2):
 		from nilearn import image
 		from nilearn import plotting
+		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		if niftifiledim == 3:
-			print "Structural image detected. Displaying full image"
-			display=plotting.plot_anat(in_file2, title = "Extraction overlayed on original")		
+			display=plotting.plot_anat(in_file2)		
 			display.add_contours(in_file,filled=True, alpha=0.5,levels=[0.2], colors='b')
+			matplotlib.pyplot.show()
 		else:
-			print "Functional image detected. Displaying first volume"
 			firstim=image.index_img(in_file, 0)
 			firstim2=image.index_img(in_file2, 0)
-			display=plotting.plot_anat(firstim2, title = "Extraction overlayed on original")	
+			display=plotting.plot_anat(firstim2)	
 			display.add_contours(firstim,filled=True, alpha=0.5,levels=[0.2], colors='b')
+			matplotlib.pyplot.show()
 		return niftifiledim
 
 
@@ -250,7 +255,7 @@ def VERBOSE_EXTRACTER():
 	result=workflow.run()
 
 	#--- 10) Show plot
-	matplotlib.pyplot.show()
+
 
 	print "Returning to intital directory"
 	os.chdir(INITDIR)

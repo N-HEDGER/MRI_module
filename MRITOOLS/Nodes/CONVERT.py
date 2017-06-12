@@ -46,7 +46,8 @@ def CONVERTER():
 	#--- 3) Prompt user for directory containing DICOM FILES
 
 	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)')
-
+	# Get rid of extra strings (Linux terminal)
+	DICOMDIR=DICOMDIR.strip('\'"')
 	#--- 3) Move to directory
 
 	os.chdir(DICOMDIR)
@@ -75,14 +76,15 @@ def CONVERTER():
 	def bplot(in_file):
 		from nilearn import image
 		from nilearn import plotting
+		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		if niftifiledim == 3:
-			print "Structural image detected. Displaying full image. For structural data, use the data contained within '/CROPPED'"
-			display=plotting.plot_anat(in_file, title="Converted structural file")
+			display=plotting.plot_anat(in_file)
+			matplotlib.pyplot.show()
 		else:
-			print "Functional image detected. Displaying first volume For functional data, use the data contained within /'REORIENTED'"
 			firstim=image.index_img(in_file, 0)
-			display=plotting.plot_anat(firstim,title="Volume 1 of funcional data")
+			display=plotting.plot_anat(firstim)
+			matplotlib.pyplot.show()
 		return niftifiledim
 
 
@@ -109,7 +111,7 @@ def CONVERTER():
 	result=workflow.run()
 
 	#--- 10) Show plot
-	matplotlib.pyplot.show()
+	
 
 	print "Returning to intital directory"
 
