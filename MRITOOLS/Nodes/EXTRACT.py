@@ -92,7 +92,6 @@ def EXTRACTER():
 			display.add_edges(in_file3)
 			matplotlib.pyplot.show()
 		else:
-			print "Functional image detected. Displaying first volume"
 			firstim=image.index_img(in_file, 0)
 			firstim2=image.index_img(in_file2, 0)
 			display=plotting.plot_anat(firstim2)	
