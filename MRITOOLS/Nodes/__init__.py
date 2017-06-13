@@ -6,3 +6,4 @@ from .EXTRACT import VERBOSE_EXTRACTER
 from .REGIST import REGISTER
 from .SLICETIME import SLICETIMER
 from .MCORRECT import MCORRECTOR
+from .SMOOTH import SMOOTHER
