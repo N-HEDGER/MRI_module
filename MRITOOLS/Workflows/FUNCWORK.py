@@ -44,7 +44,7 @@ Created on Fri Jun 9 12:00:00 2017
 #--- 
 
 
-def SMOOTHER():
+def FUNCPIPE():
 	#--- 1)  Import modules
 	from __future__ import print_function
 	from __future__ import division
@@ -193,12 +193,14 @@ def SMOOTHER():
 	def bplot(in_file,in_file2,in_file3):
 		from nilearn import image
 		from nilearn import plotting
+		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		firstim=image.index_img(in_file, 0)
 		firstim2=image.index_img(in_file2, 0)
 		display=plotting.plot_anat(firstim2)	
 		display.add_contours(firstim,filled=True, alpha=0.5,levels=[0.2], colors='b')
 		display.add_edges(in_file3)
+		matplotlib.pyplot.show()
 		return niftifiledim
 
 	#--- 18) Show extraction
@@ -212,9 +214,11 @@ def SMOOTHER():
 	def splot(in_file):
 		from nilearn import image
 		from nilearn import plotting
+		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		firstim=image.index_img(in_file, 0)
-		display=plotting.plot_anat(firstim, title = "Smoothed data",display_mode='z',cut_coords=10)	
+		display=plotting.plot_anat(firstim, title = "Smoothed data",display_mode='z',cut_coords=10)
+		matplotlib.pyplot.show()	
 		return niftifiledim
 
 	#--- 19) Show smoothing
@@ -237,7 +241,7 @@ def SMOOTHER():
 	result=workflow.run()
 
 	#--- 23) Show plots
-	matplotlib.pyplot.show()
+	
 
 	#--- 24) Return to initial working directory
 	os.chdir(INITDIR)
