@@ -7,3 +7,4 @@ from .REGIST import REGISTER
 from .SLICETIME import SLICETIMER
 from .MCORRECT import MCORRECTOR
 from .SMOOTH import SMOOTHER
+from .HIGHPASS import HPFILTER
