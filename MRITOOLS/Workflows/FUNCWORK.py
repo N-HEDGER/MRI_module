@@ -219,7 +219,7 @@ def FUNCPIPE():
 		import matplotlib
 		niftifiledim=len(image.load_img(in_file).shape)
 		firstim=image.index_img(in_file, 0)
-		display=plotting.plot_anat(firstim, title = "Smoothed data",display_mode='z',cut_coords=10)
+		display=plotting.plot_anat(firstim,display_mode='z',cut_coords=10)
 		matplotlib.pyplot.show()	
 		return niftifiledim
 
