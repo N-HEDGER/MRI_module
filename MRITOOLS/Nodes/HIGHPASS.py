@@ -61,7 +61,9 @@ def HPFILTER():
 
 
 	if type(CUTOFF) == float:
-		inputnode.inputs.cutoff=(CUTOFF/(inputnode.inputs.TR*2.5))
+		inputnode.inputs.cutoff=float((CUTOFF/(inputnode.inputs.TR*2.5)))
+	elif type(CUTOFF) == int:
+	inputnode.inputs.cutoff=float((CUTOFF/(inputnode.inputs.TR*2.5)))
 	elif type(CUTOFF) == list:
 		inputnode.inputs.cutoff=list(numpy.asarray(CUTOFF)/(inputnode.inputs.TR*2.5))
 		inputnode.iterables=([('cutoff',CUTOFF)])
