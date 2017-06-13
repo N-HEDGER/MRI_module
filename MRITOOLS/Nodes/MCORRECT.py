@@ -39,6 +39,7 @@ def MCORRECTOR():
 	#--- 3) Prompt user for directory containing DICOM FILES
 
 	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to motion correct\n(ensure there is no blank space at the end)')
+	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	#--- 3) Move to directory
 

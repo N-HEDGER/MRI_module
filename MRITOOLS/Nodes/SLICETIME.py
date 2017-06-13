@@ -7,7 +7,7 @@ Created on Weds June 07 13:37:40 2017
 #--- Goal of the function:
 # Phase x of pre-processing
 # Provide wrapper for fsl slicetimer
-# Inputs: Nifti file
+# Inputs: Nifti file TR (secs)
 # Outputs:
 # 1) / SLICETIMED: slice time corrected nifti file.
 
@@ -37,6 +37,7 @@ def SLICETIMER(TR):
 	#--- 3) Prompt user for directory containing DICOM FILES
 
 	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)')
+	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 
 	#--- 3) Move to directory
