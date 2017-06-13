@@ -1,3 +1,9 @@
+from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+
+
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
@@ -46,10 +52,6 @@ Created on Fri Jun 9 12:00:00 2017
 
 def FUNCPIPE():
 	#--- 1)  Import modules
-	from __future__ import print_function
-	from __future__ import division
-	from builtins import str
-	from builtins import range
 
 	import os                                    # system functions
 	import nipype.interfaces.dcm2nii as dcm2nii
