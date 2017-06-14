@@ -86,11 +86,11 @@ def FUNCPIPE():
 	print ('---\n')
 	DICOMDIR=DICOMDIR.strip('\'"')
 	FWHM=float(input('Please enter the FWHM of the smoother (mm) \n'))
-	print '---\n'
+	print ('---\n')
 	HIGHPASS=float(input('Please enter the High Pass filter cutoff (s)\n'))
-	print '---\n'
+	print ('---\n')
 	TR=float(input('Please enter the TR (s)\n'))
-	print '---\n'
+	print ('---\n')
 
 
 	#--- 4) Define workflow and input node.
@@ -250,7 +250,7 @@ def FUNCPIPE():
 	
 
 	#--- 24) Return to initial working directory
-	print "Workflow completed. Returning to intital directory\n"
+	print ("Workflow completed. Returning to intital directory\n")
 	os.chdir(INITDIR)
 
 
