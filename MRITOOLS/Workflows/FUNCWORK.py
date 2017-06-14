@@ -82,11 +82,15 @@ def FUNCPIPE():
 
 	#--- 3) Prompt user for inputs.
 
-	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)')
+	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to pre-process\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	DICOMDIR=DICOMDIR.strip('\'"')
-	FWHM=float(input('Please enter the FWHM of the smoother'))
-	HIGHPASS=float(input('Please enter the High Pass filter cutoff'))
-	TR=float(input('Please enter the TR'))
+	FWHM=float(input('Please enter the FWHM of the smoother (mm) \n'))
+	print '---\n'
+	HIGHPASS=float(input('Please enter the High Pass filter cutoff (s)\n'))
+	print '---\n'
+	TR=float(input('Please enter the TR (s)\n'))
+	print '---\n'
 
 
 	#--- 4) Define workflow and input node.
@@ -246,6 +250,7 @@ def FUNCPIPE():
 	
 
 	#--- 24) Return to initial working directory
+	print "Workflow completed. Returning to intital directory\n"
 	os.chdir(INITDIR)
 
 

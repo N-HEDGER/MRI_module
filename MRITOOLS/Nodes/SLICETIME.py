@@ -23,7 +23,7 @@ Created on Weds June 07 13:37:40 2017
 
 #--- 
 
-def SLICETIMER(TR):
+def SLICETIMER():
 	#--- 1)  Import modules
 	import nipype.pipeline.engine as pe
 	import os
@@ -36,7 +36,10 @@ def SLICETIMER(TR):
 
 	#--- 3) Prompt user for directory containing DICOM FILES
 
-	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)')
+	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to slicetime\n(ensure there is no blank space at the end)\n')
+	print '---\n'
+	TR=float(input('Please enter the TR in seconds\n'))
+	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 
@@ -72,6 +75,6 @@ def SLICETIMER(TR):
 	result=workflow.run()
 
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)

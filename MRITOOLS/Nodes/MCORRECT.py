@@ -38,7 +38,8 @@ def MCORRECTOR():
 
 	#--- 3) Prompt user for directory containing DICOM FILES
 
-	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to motion correct\n(ensure there is no blank space at the end)')
+	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to motion correct\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	#--- 3) Move to directory
@@ -78,6 +79,6 @@ def MCORRECTOR():
 	result=workflow.run()
 
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)

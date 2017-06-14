@@ -31,11 +31,14 @@ def EXTRACTER():
 
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
-	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)')
+	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
-	frac=input('Please input the fractional ansiotropy threshold \n in the range [0-1]')
-	grad=input('Please input the gradient \n in the range [-1 1]')
+	frac=input('Please input the fractional ansiotropy threshold \n in the range [0-1]\n')
+	print '---\n'
+	grad=input('Please input the gradient \n in the range [-1 1]\n')
+	print '---\n'
 
 	#--- 3) Move to directory
 
@@ -122,7 +125,7 @@ def EXTRACTER():
 	#--- 10) Show plot
 	matplotlib.pyplot.show()
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 	os.chdir(INITDIR)
 
 
@@ -169,7 +172,8 @@ def VERBOSE_EXTRACTER():
 
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
-	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)')
+	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	frac=list(numpy.linspace(start=0,stop=1,num=6))
@@ -256,7 +260,7 @@ def VERBOSE_EXTRACTER():
 	#--- 10) Show plot
 
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 	os.chdir(INITDIR)
 
 

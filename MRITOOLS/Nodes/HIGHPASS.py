@@ -43,8 +43,11 @@ def HPFILTER():
 	#--- 3) Prompt user for nifti file
 
 	NIFTIFILE=raw_input('Please drag in the functional volume\n(ensure there is no blank space at the end)\n')
-	CUTOFF=input('Please enter the High pass filter cutoff (s)\n')
-	TR=input('Please enter the TR(s)\n')
+	print '---\n'
+	CUTOFF=float(input('Please enter the High pass filter cutoff (s)\n'))
+	print '---\n'
+	TR=float(input('Please enter the TR(s)\n'))
+	print '---\n'
 
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
@@ -100,6 +103,6 @@ def HPFILTER():
 
 	result=workflow.run()
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)

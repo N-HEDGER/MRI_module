@@ -41,8 +41,11 @@ def SMOOTHER():
 	#--- 3) Prompt user for nifti file
 
 	NIFTIFILE=raw_input('Please drag in the functional volume\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	NIFTIMASK=raw_input('Please drag in the mask\n for the functional volume\n(ensure there is no blank space at the end)\n')
-	FWHM=input('Please enter the FWHM (mm) of the smoother')
+	print '---\n'
+	FWHM=input('Please enter the FWHM (mm) of the smoother\n')
+	print '---\n'
 
 
 	NIFTIFILE=NIFTIFILE.strip('\'"')
@@ -92,6 +95,6 @@ def SMOOTHER():
 
 	result=workflow.run()
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)

@@ -114,7 +114,7 @@ def CONVERTER():
 	#--- 10) Show plot
 	
 
-	print "Returning to intital directory"
+	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)
 
