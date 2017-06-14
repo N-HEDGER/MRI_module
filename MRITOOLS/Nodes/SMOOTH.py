@@ -7,7 +7,7 @@ Created on Weds June 07 13:37:40 2017
 #--- Goal of the function:
 # Phase x of pre-processing
 # Provide wrapper for afni 3D BlurinMask
-# Inputs: Nifti file, nifti mask, FWHM of smoother (mm)
+# Inputs: Nifti file, nifti mask, FWHM of smoother -iterable (mm)
 # Outputs:
 
 # 1) / SMOOTHED: smoothed nifti file.
@@ -79,7 +79,6 @@ def SMOOTHER():
 
 
 	#--- 8) Set up workflow
-
 	workflow = pe.Workflow(name='SMOOTHER')
 	workflow.base_dir = NIFTIDIR
 

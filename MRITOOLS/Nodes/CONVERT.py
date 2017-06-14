@@ -45,7 +45,8 @@ def CONVERTER():
 
 	#--- 3) Prompt user for directory containing DICOM FILES
 
-	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)')
+	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)\n')
+	print '---\n'
 	# Get rid of extra strings (Linux terminal)
 	DICOMDIR=DICOMDIR.strip('\'"')
 	#--- 3) Move to directory

@@ -84,9 +84,9 @@ def FUNCPIPE():
 
 	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)')
 	DICOMDIR=DICOMDIR.strip('\'"')
-	FWHM=input('Please enter the FWHM of the smoother')
-	HIGHPASS=input('Please enter the High Pass filter cutoff')
-	TR=input('Please enter the TR')
+	FWHM=float(input('Please enter the FWHM of the smoother'))
+	HIGHPASS=float(input('Please enter the High Pass filter cutoff'))
+	TR=float(input('Please enter the TR'))
 
 
 	#--- 4) Define workflow and input node.
