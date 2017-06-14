@@ -83,7 +83,7 @@ def FUNCPIPE():
 	#--- 3) Prompt user for inputs.
 
 	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to pre-process\n(ensure there is no blank space at the end)\n')
-	print '---\n'
+	print ('---\n')
 	DICOMDIR=DICOMDIR.strip('\'"')
 	FWHM=float(input('Please enter the FWHM of the smoother (mm) \n'))
 	print '---\n'
