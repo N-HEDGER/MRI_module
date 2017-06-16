@@ -10,9 +10,9 @@ Nodes are self contained functions for data-preprocessing, including:
 5. Spatial smoothing (SMOOTHER)
 6. High-pass temporal filtering (HPFILTER)
 
-General usage example:
+### General usage example:
 
-### Executing the spatial smoothing node
+Executing the spatial smoothing node:
 ```python
 from MRITOOLS.Nodes import SMOOTHER
 SMOOTHER()
@@ -25,15 +25,10 @@ Workflows are a series of inter-connected nodes that form a full-processing pipe
 2. Registration/ normalisation (STRUCTPIPE)
 3. Level 1 analysis of functional volume (L1PIPE)
 
-General usage example:
+### General usage example:
 
-### Executing the functional pre-processing workflow
+Executing the functional pre-processing workflow:
 ```python
 from MRITOOLS.Workflows import FUNCPIPE
 FUNCPIPE()
 ```
-
-
-
-
-
