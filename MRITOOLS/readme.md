@@ -1,5 +1,5 @@
 # MRITOOLS
-This package consists of [Nodes](/Nodes) and [Workflows](/Workflows)
+This package consists of [Nodes](/MRITOOLS/Nodes) and [Workflows](/MRITOOLS/Workflows)
 
 ## [Nodes](/Nodes)
 Nodes are self contained functions for data-preprocessing, including:
