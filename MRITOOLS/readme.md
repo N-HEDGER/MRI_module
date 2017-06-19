@@ -1,7 +1,7 @@
 # MRITOOLS
 This package consists of [Nodes](/MRITOOLS/Nodes) and [Workflows](/MRITOOLS/Workflows)
 
-## [Nodes](/Nodes)
+## [Nodes](/MRITOOLS/Nodes)
 Nodes are self contained functions for data-preprocessing, including:
 1. Conversion from DICOM to nifti (CONVERTER)
 2. Slice timing correction (SLICETIMER)
@@ -18,7 +18,7 @@ from MRITOOLS.Nodes import SMOOTHER
 SMOOTHER()
 ```
 
-## [Workflows](/Workflows)
+## [Workflows](/MRITOOLS/Workflows)
 
 Workflows are a series of inter-connected nodes that form a full-processing pipeline, including:
 1. Pre-processing of functional volumes (FUNCPIPE)
