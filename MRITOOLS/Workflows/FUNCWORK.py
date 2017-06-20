@@ -54,6 +54,7 @@ def FUNCPIPE():
 	#--- 1)  Import modules
 
 	import os                                    # system functions
+	os.system('clear')
 	import nipype.interfaces.dcm2nii as dcm2nii
 	import nipype.interfaces.io as nio           # Data i/o
 	import nipype.interfaces.fsl as fsl          # fsl
@@ -83,13 +84,17 @@ def FUNCPIPE():
 	#--- 3) Prompt user for inputs.
 
 	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to pre-process\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print ('---\n')
 	DICOMDIR=DICOMDIR.strip('\'"')
 	FWHM=float(input('Please enter the FWHM of the smoother (mm) \n'))
+	os.system('clear')
 	print ('---\n')
 	HIGHPASS=float(input('Please enter the High Pass filter cutoff (s)\n'))
+	os.system('clear')
 	print ('---\n')
 	TR=float(input('Please enter the TR (s)\n'))
+	os.system('clear')
 	print ('---\n')
 
 

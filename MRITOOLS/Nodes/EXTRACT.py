@@ -18,6 +18,7 @@ def EXTRACTER():
 	import nipype.pipeline.engine as pe
 	import matplotlib
 	import os
+	os.system('clear')
 	from glob import glob
 	from nilearn import plotting
 	from nilearn import image
@@ -32,12 +33,15 @@ def EXTRACTER():
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
 	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
 	frac=input('Please input the fractional ansiotropy threshold \n in the range [0-1]\n')
+	os.system('clear')
 	print '---\n'
 	grad=input('Please input the gradient \n in the range [-1 1]\n')
+	os.system('clear')
 	print '---\n'
 
 	#--- 3) Move to directory
@@ -158,6 +162,7 @@ def VERBOSE_EXTRACTER():
 	import nipype.pipeline.engine as pe
 	import matplotlib
 	import os
+	os.system('clear')
 	from glob import glob
 	from nilearn import plotting
 	from nilearn import image
@@ -173,6 +178,7 @@ def VERBOSE_EXTRACTER():
 	#--- 3) Prompt user for directory containing NIFTI FILES
 
 	NIFTIFILE=raw_input('Please drag in the \nnifti file you wish to extract\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]

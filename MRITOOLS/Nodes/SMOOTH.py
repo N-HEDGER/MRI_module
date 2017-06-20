@@ -28,6 +28,7 @@ def SMOOTHER():
 	#--- 1)  Import modules
 	import nipype.pipeline.engine as pe
 	import os
+	os.system('clear')
 	from glob import glob
 	import nipype.interfaces.fsl.preprocess as fslp
 	from nipype.interfaces import afni as afni
@@ -41,10 +42,13 @@ def SMOOTHER():
 	#--- 3) Prompt user for nifti file
 
 	NIFTIFILE=raw_input('Please drag in the functional volume\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	NIFTIMASK=raw_input('Please drag in the mask\n for the functional volume\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	FWHM=input('Please enter the FWHM (mm) of the smoother\n')
+	os.system('clear')
 	print '---\n'
 
 

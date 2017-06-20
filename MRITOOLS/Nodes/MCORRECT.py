@@ -28,6 +28,7 @@ def MCORRECTOR():
 	#--- 1)  Import modules
 	import nipype.pipeline.engine as pe
 	import os
+	os.system('clear')
 	from glob import glob
 	import nipype.interfaces.fsl as fsl
 	import nipype.interfaces.utility as util
@@ -39,6 +40,7 @@ def MCORRECTOR():
 	#--- 3) Prompt user for directory containing DICOM FILES
 
 	NIFTIFILE=raw_input('Please drag in the nifti\n file you wish to motion correct\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]

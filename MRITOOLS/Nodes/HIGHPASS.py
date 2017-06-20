@@ -29,6 +29,7 @@ def HPFILTER():
 	#--- 1)  Import modules
 	import nipype.pipeline.engine as pe
 	import os
+	os.system('clear')
 	from glob import glob
 	import nipype.interfaces.fsl as fsl  
 	from nipype.interfaces import afni as afni
@@ -43,10 +44,13 @@ def HPFILTER():
 	#--- 3) Prompt user for nifti file
 
 	NIFTIFILE=raw_input('Please drag in the functional volume\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	CUTOFF=float(input('Please enter the High pass filter cutoff (s)\n'))
+	os.system('clear')
 	print '---\n'
 	TR=float(input('Please enter the TR(s)\n'))
+	os.system('clear')
 	print '---\n'
 
 	NIFTIFILE=NIFTIFILE.strip('\'"')

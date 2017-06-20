@@ -11,18 +11,17 @@ Created on Thu Apr 13 16:33:40 2017
 # Outputs:
 # 1) / CONVERTED: nifti file.
 # 2) / REORIENTED reoriented nifti file.
-# 3) / CROPPED reoriented and cropped nifti file.
 
 # Requires: dcm2nii, nipype, nilearn, nibabel. dcm2nii and fsl
 
 
 #--- Details
 
-# dcm2nii is recruited for conversion, but fsl is recruited for cropping and reorienting
-# This is because dcm2nii doesnt seem to handle reorienting and cropping for partial brain 
+# dcm2nii is recruited for conversion, but fsl is recruited for reorienting
+# This is because dcm2nii doesnt seem to handle reorienting for partial brain 
 # functional data.
 # Reoriented files are plotted.
-# The cropping stage may not be useful for functional data, since I dont know how it affects slice timing.
+
 
 #--- 
 
@@ -33,6 +32,7 @@ def CONVERTER():
 	import nipype.pipeline.engine as pe
 	import matplotlib
 	import os
+	os.system('clear')
 	from glob import glob
 	from nilearn import plotting
 	from nilearn import image
@@ -46,6 +46,7 @@ def CONVERTER():
 	#--- 3) Prompt user for directory containing DICOM FILES
 
 	DICOMDIR=raw_input('Please drag in the directory of\nDICOM files you wish to convert\n(ensure there is no blank space at the end)\n')
+	os.system('clear')
 	print '---\n'
 	# Get rid of extra strings (Linux terminal)
 	DICOMDIR=DICOMDIR.strip('\'"')
@@ -65,11 +66,6 @@ def CONVERTER():
 
 	realigner=pe.Node(interface=fsl.Reorient2Std(),name='REORIENTED')
 	realigner.inputs.output_type='NIFTI_GZ'
-
-
-	#--- 5) Set up a cropping node 
-
-	cropper=pe.Node(interface=fsl.RobustFOV(),name='CROPPED')
 
 
 	#--- 6) Set up a plotting node
@@ -102,7 +98,6 @@ def CONVERTER():
 	#--- 8) Connect nodes.
 
 	workflow.connect(converter,'converted_files',realigner,'in_file')
-	workflow.connect(realigner,'out_file',cropper,'in_file')
 	workflow.connect(realigner,'out_file',showconvert,'in_file')
 
 	workflow.write_graph(graph2use='exec')

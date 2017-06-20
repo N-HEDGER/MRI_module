@@ -15,7 +15,7 @@ import matplotlib
 
 specify_model = pe.Node(interface=model.SpecifyModel(), name="specify_model")
 specify_model.inputs.input_units = 'secs'
-specify_model.inputs.functional_runs = ['/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/ADDMEAN/mapflow/_ADDMEAN1/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz']
+specify_model.inputs.functional_runs = ['/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/REORIENTED/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented.ica/denoised_data.nii.gz']
 specify_model.inputs.time_repetition = 2
 specify_model.inputs.high_pass_filter_cutoff = 90.
 specify_model.inputs.event_files=glob.glob('/Users/naah1g08/Desktop/MRI/ST0/SE3/Events/*')
@@ -40,12 +40,12 @@ Designer.inputs.contrasts=[cont1, cont2, cont3, cont4]
 Model=pe.Node(interface=fsl.FEATModel(),name='Model')
 
 fgls=pe.Node(interface=fsl.FILMGLS(),name='GLS')
-fgls.inputs.in_file='/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/ADDMEAN/mapflow/_ADDMEAN1/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented_st_dtype_mcf_despike_brain_blur_tempfilt_maths.nii.gz'
+fgls.inputs.in_file='/Users/naah1g08/Desktop/MRI/ST0/SE3/FUNCPIPE/REORIENTED/20170411_101533ep2dboldmocop220003mmiso1s005a001_reoriented.ica/denoised_data.nii.gz'
 #fgls.inputs.mask_size=0
 #fgls.inputs.threshold=0
 
 
-workflow = pe.Workflow(name='WORK3')
+workflow = pe.Workflow(name='WORK4')
 
 workflow.connect(specify_model,'session_info',Designer,'session_info')
 workflow.connect(Designer,'fsf_files',Model,'fsf_file')
