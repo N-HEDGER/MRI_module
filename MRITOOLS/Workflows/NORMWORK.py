@@ -75,7 +75,7 @@ def NORMPIPE():
   epireg.inputs.t1_brain=t1_brain.strip('\'"')
   epireg.inputs.t1_head=t1_head.strip('\'"')
   epireg.inputs.epi=epi.strip('\'"')
-  NIFTIDIR=os.path.split(t1_brain)[0]
+  NIFTIDIR=os.path.split(epireg.inputs.t1_brain)[0]
 
   #--- 4)  Register the T1 to the MNI
   registerT12S=pe.Node(interface=fsl.FLIRT(),name='REGISTEREDT12MNI')
