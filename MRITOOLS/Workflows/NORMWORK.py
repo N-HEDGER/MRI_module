@@ -163,8 +163,8 @@ def NORMPIPE():
       matplotlib.pyplot.show()
       return niftifiledim
 
-    showregL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplot),name='SHOWREG')
-    showregNL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplotN),name='SHOWREG')
+  showregL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplot),name='SHOWREG')
+  showregNL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplotN),name='SHOWREG')
 
 
   #--- 11)  Setup workflow
