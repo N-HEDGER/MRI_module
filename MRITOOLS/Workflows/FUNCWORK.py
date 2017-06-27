@@ -158,7 +158,7 @@ def FUNCPIPE():
 
 	#--- 13) Extract
 	extracter=pe.Node(interface=fsl.BET(),name='EXTRACTED')
-	extracter.inputs.frac=float(0.6)
+	extracter.inputs.frac=float(0.7)
 	extracter.inputs.vertical_gradient=float(-0.1)
 	extracter.inputs.mask=bool(1)
 	extracter.inputs.functional=bool(1)

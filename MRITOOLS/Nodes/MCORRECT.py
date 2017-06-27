@@ -56,7 +56,7 @@ def MCORRECTOR():
 
 	#--- 5) Set up plotting node
 	plot_motion = pe.Node(interface=fsl.PlotMotionParams(in_source='fsl'),name='PLOTTED')
-	plot_motion.iterables = ('plot_type', ['rotations', 'translations', 'displacement'])
+	plot_motion.iterables = ('plot_type', ['rotations', 'translations'])
 
 	#--- 5) Utility output node
 	outputnode = pe.Node(interface=util.IdentityInterface(fields=['mcorrected_files']),name='outputnode')
