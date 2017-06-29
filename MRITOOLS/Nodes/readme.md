@@ -10,7 +10,7 @@ To access these tools:
 | Node | Phase | Description | Apply to |
 | --- | --- | --- | --- |
 | [CONVERTER](#converter) | 1 | Converts a directory of DICOM files to nifti format | Structural or Functional Data |
-| [SLICETIMER](#extracter) | 2 | Correct for slice timing differences | Functional Data |
+| [SLICETIMER](#slicetimer) | 2 | Correct for slice timing differences | Functional Data |
 | [MCORRECTOR](#mcorrector) | 3 | Correct for head movement | Functional Data |
 | [EXTRACTER](#extracter) | 4 | Extract non-brain tissue | Structural or Functional Data |
 | [SMOOTHER](#smoother)| 5 | Spatially smooth data | Functional Data |
@@ -67,7 +67,7 @@ CONVERTER()
 
 ```python
 from MRITOOLS.Nodes import SLICETIMER
-EXTRACTER()
+SLICETIMER()
 ```
 
 * You will then be prompted to drag in the nifti file you wish to slicetime.
