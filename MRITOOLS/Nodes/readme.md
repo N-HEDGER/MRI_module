@@ -56,6 +56,31 @@ CONVERTER()
 ## SLICETIMER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+| .nii file, TR | slice-timing corrected .nii file | fsl, nipype |
+
+### Description
+* Performs slice timing correction, using the FSL slicetimer algorithm.
+* It is nothing more than a simple wrapper.
+
+### Instructions
+* To call this function, in the ipython terminal type:
+
+```python
+from MRITOOLS.Nodes import SLICETIMER
+EXTRACTER()
+```
+
+* You will then be prompted to drag in the nifti file you wish to slicetime.
+* Next, you will be required to input the TR (s).
+
+* A new directory will be created in the input directory called *'SLICETIMER'* containing the outputs:
+
+1. / SLICETIMED - Slice-timing corrected file.
+
+### Notes
+* An interleaved aquisition is assumed, since it is the most common.
+* The middle slice is the reference slice, to which all other slices are interpolated to.
+
 ***
 
 <a id='extracter'></a>
