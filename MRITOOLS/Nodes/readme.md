@@ -9,20 +9,20 @@ To access these tools:
 # Index
 | Node | Phase | Description | Apply to |
 | --- | --- | --- | --- |
-| [Converter](#converter) | 1 | Converts a directory of DICOM files to nifti format | Structural or Functional Data |
-| [Extracter](#extracter) | 2 | Remove non-brain tissue | Structural or Functional Data |
-| [Register](#register) | >2 | Register image to MNI 152 space | Structural or Functional Data |
-| [SpaceRealigner](#spacerealigner)| 3 | Motion correct data | Functional Data |
-| [TimeRealigner](#timerealigner) | 4 | Slice-time correct data | Functional Data |
-| [Smoother](#smoother) | 5 | Smooth data | Functional Data |
+| [CONVERTER](#converter) | 1 | Converts a directory of DICOM files to nifti format | Structural or Functional Data |
+| [SLICETIMER](#extracter) | 2 | Correct for slice timing differences | Functional Data |
+| [MCORRECTOR](#mcorrector) | 3 | Correct for head movement | Functional Data |
+| [EXTRACTER](#extracter) | 4 | Extract non-brain tissue | Structural or Functional Data |
+| [SMOOTHER](#smoother)| 5 | Spatially smooth data | Functional Data |
+| [HPFILTER](#hpfilter) | 6 | Apply high-pass temporal filtering to data | Functional Data |
 ***
 
 <a id='converter'></a>
-## Converter
+## CONVERTER
 
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| Directory containing DICOM files | /CONVERTED /REORIENTED /CROPPED | dcm2nii, fsl, nipype, nilearn, matplotlib |
+| Directory containing DICOM files | /CONVERTED /REORIENTED | dcm2nii, fsl, nipype, nilearn, matplotlib |
 
 ![alt text](https://i.imgbox.com/tQKKtAOV.png "Title")
 
@@ -46,16 +46,20 @@ CONVERTER()
 
 2. / REORIENTED - Converted and reoriented file
 
-3. / CROPPED - Converted, reoriented and cropped file (note that cropped files should only be used for structural images).
-
 * The converted, reoriented nifti file is plotted to force check the result. If the data are 4D (functional) only the first volume is displayed.
 
 ![alt text](https://i.imgbox.com/uvxHs9ju.png "Title")
 ![alt text](https://i.imgbox.com/hKlPBY1s.png "Title")
 
 ***
+<a id='slicetimer'></a>
+## SLICETIMER
+| Inputs | Outputs | Dependencies |
+| --- | --- | --- |
+***
+
 <a id='extracter'></a>
-## Extracter
+## EXTRACTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
 | nifti file, fractional ansiotropy threshold (iterable), threshold gradient (iterable) | /REORIENTED /EXTRACTED | fsl, nipype, nilearn, matplotlib |
@@ -112,72 +116,21 @@ will result in the following folder structure, each folder containing the result
 
 * Also contained within this folder is the function VERBOSE_EXTRACTER, which will apply 36 combinations of the two input parameters (linearly spaced). This is quite time consuming and memory intensive, but it  will give you a very thorough summary of impact the combinations of values have, so that you can refine future calls to EXTRACTER.
 ***
-<a id='register'></a>
-## Register
-| Inputs | Outputs | Dependencies |
-| --- | --- | --- |
-|reoriented & extracted nifti file, Degrees of freedom (iterable) , Non-linear? (boolean)| /REGISTERED /REGISTERED_WARPED (optional) | fsl, nipype, nilearn, matplotlib |
 
-![alt text](https://i.imgbox.com/FCVdGfpb.png "Title")
-
-### Description
-* his function registers structural images to the MNI 152 template
-* Inputs should be reoriented and extracted.
-* Initially, linear registration is applied with FLIRT, then optionally, non-linear warping is applied with FNIRT, taking in the affine file from the initial FLIRT transformation.
-
-### Instructions
-* To call this function, in the ipython terminal type:
-
-```python
-from MRITOOLS.Nodes import REGISTER
-REGISTER()
-```
-
-* You will be prompted to input the nifti file you wish to register. To do this, navigate to the file in the finder/ file explorer, drag it into the terminal and press enter.
-
-* Next, you will be asked to input the degrees of freedom for the linear registration.
-
-* Finally, you will be asked whether you wish to additionally apply non-linear warping. The default FSL values are assumed.
-
-* A new directory will be created in the input directory called *'REGISTER'* containing the outputs.
-
-1. / REGISTERED - Linearly registered .nii file
-
-2. / REGISTERED_WARPED - Linearly registered and non-linearly warped .nii file
-
-* Outlines of the registered and warped files, superimposed on the MNI 152 template are displayed.
-
-![alt text](https://preview.ibb.co/gzk20k/figure_1.png  "Title")
-![alt text](https://preview.ibb.co/hZHzfk/figure_2.png  "Title")
-
-
-### Iterables
-
-The degrees of freedom are iterable and can be entered as a comma seperated vector, but you should think carefully about whether you want to do this, since a misguided registration can take a lot of time. The FSL default is 12 DOF and this works pretty well most of the time.
-
-### Notes
-* As ever, it is beneficial to check the result more thoroughly in fslview or a related application, since the python implementation will only show a 2d figure.
-
-* I assume the default location for the MNI 152 template, so this may need to be changed depending on the install location.
-
-* Note that brain extraction needs to be very good for the non-linear warping to work properly. This is designed as a standalone function (i.e. there is no input from BET) so better results will be obtained if you supply the extracted and non-extracted volumes via the FSL GUI.
-
-
-***
-<a id='spacerealigner'></a>
-## SpaceRealigner
-| Inputs | Outputs | Dependencies |
-| --- | --- | --- |
-***
-
-<a id='timerealigner'></a>
-## TimeRealigner
+<a id='mcorrector'></a>
+## MCORRECTOR
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
 ***
 
 <a id='smoother'></a>
-## Smoother
+## SMOOTHER
+| Inputs | Outputs | Dependencies |
+| --- | --- | --- |
+***
+
+<a id='hpfilter'></a>
+## HPFILTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
 ***
