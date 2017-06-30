@@ -52,10 +52,6 @@ FUNCPIPE()
 
 * Plots of the extraction and smoothing are returned.
 
-
-
-***
-
 ***
 <a id='normpipe'></a>
 ## NORMPIPE
@@ -64,7 +60,6 @@ FUNCPIPE()
 | 1) Also normalise (boolean) 2) Brain extracted structural 3) non brain-extracted structural 4) mean functional volume | 1) Registered structural 2) Registered functional 3) Warped structural 4) Warped functional | FSL, ANTs, nilearn, matplotlib, nipype |
 
 ![alt text](https://i.imgbox.com/VqzPwUow.png "Title")
-
 
 ### Description
 * Registration and normalisation workflow.
@@ -75,10 +70,20 @@ FUNCPIPE()
 * T1 is then warped to MNI (ANTs Regsistration)
 * Transform is applied to the mean functional (ANTs apply warp). 
 
+### Instructions
+* Firstly, you be asked whether you wish to perform just registration (0) or registration and normalisation (1).
+
+* Next, you will be required to drag in the brain extracted structural volume.
+
+* Next, you will be required to drag in the non-brain extracted structural volume.
+
+* Next, you will be prompted to drag in the mean functional volume.
+
+* A plot will display the subjects structural scan (red) on the MNI 152 template.
 ![alt text](https://i.imgbox.com/eVoDIGih.png "Title")
 
-
-***
+### Notes
+* The ANTs registration algorithm can take a very long time.....
 
 ***
 <a id='l1pipe'></a>
