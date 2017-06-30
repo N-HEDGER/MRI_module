@@ -1,4 +1,5 @@
-# Tools for fMRI analysis
+# Tools for fMRI analysis. Welcome!
+![alt text](https://i.imgbox.com/QqCVWa0v.png "Title")
 
 This is a python module for performing fMRI analysis with the Nipype framework. 
 
