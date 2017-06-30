@@ -22,8 +22,9 @@ SMOOTHER()
 
 Workflows are a series of inter-connected nodes that form a full-processing pipeline, including:
 1. Pre-processing of functional volumes (FUNCPIPE)
-2. Registration/ normalisation (STRUCTPIPE)
-3. Level 1 analysis of functional volume (L1PIPE)
+2. Registration/ normalisation (NORMPIPE)
+3. Level 1 analysis of functional volume, using the example data (L1PIPE)
+4. Render statistics onto MNI brain/ structural volume (RENDERPIPE).
 
 ### General usage example:
 
