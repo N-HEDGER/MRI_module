@@ -87,6 +87,12 @@ def FUNCPIPE():
 	os.system('clear')
 	print ('---\n')
 	DICOMDIR=DICOMDIR.strip('\'"')
+	frac=float(input('Please enter the fractional anisotropy threshold [0 - 1] \n'))
+	os.system('clear')
+	print ('---\n')
+	grad=float(input('Please enter the threshold gradient [-1 - 1] \n'))
+	os.system('clear')
+	print ('---\n')
 	FWHM=float(input('Please enter the FWHM of the smoother (mm) \n'))
 	os.system('clear')
 	print ('---\n')
@@ -96,6 +102,9 @@ def FUNCPIPE():
 	TR=float(input('Please enter the TR (s)\n'))
 	os.system('clear')
 	print ('---\n')
+
+
+
 
 
 	#--- 4) Define workflow and input node.
@@ -158,8 +167,8 @@ def FUNCPIPE():
 
 	#--- 13) Extract
 	extracter=pe.Node(interface=fsl.BET(),name='EXTRACTED')
-	extracter.inputs.frac=float(0.7)
-	extracter.inputs.vertical_gradient=float(-0.1)
+	extracter.inputs.frac=float(frac)
+	extracter.inputs.vertical_gradient=float(grad)
 	extracter.inputs.mask=bool(1)
 	extracter.inputs.functional=bool(1)
 
