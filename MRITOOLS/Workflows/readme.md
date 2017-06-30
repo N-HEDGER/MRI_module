@@ -40,6 +40,7 @@ To access these tools:
 
 ![alt text](https://i.imgbox.com/VqzPwUow.png "Title")
 
+
 ### Description
 * Registration and normalisation workflow.
 * If also normalise = 1 it will perform registration and normalisation, otherwise just registration is applied. 
@@ -48,6 +49,9 @@ To access these tools:
 * Above transformation matrices are combined and applied to the mean functional (FSL applyxfm).
 * T1 is then warped to MNI (ANTs Regsistration)
 * Transform is applied to the mean functional (ANTs apply warp). 
+
+![alt text](https://i.imgbox.com/eVoDIGih.png "Title")
+
 
 ***
 
