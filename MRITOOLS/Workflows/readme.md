@@ -8,12 +8,12 @@ To access these tools:
 ***
 
 # Index
-| Node | Phase | Description | Apply to |
+| Node | Description | Apply to |
 | --- | --- | --- | --- |
-| [FUNCPIPE](#funcpipe) | 1 | Functional pre-processing workflow | Functional Data |
-| [NORMPIPE](#normpipe) | 2 | Registration and normalisation workflow | Structural and Functional Data |
-| [L1PIPE](#l1pipe) | >2 | First level analysis of functional data | Functional Data |
-| [RENDERPIPE](#renderpipe)| 3 | Render first level stats onto anatomy/ MNI | Structural and Functional Data |
+| [FUNCPIPE](#funcpipe) | Functional pre-processing workflow | Functional Data |
+| [NORMPIPE](#normpipe) | Registration and normalisation workflow | Structural and Functional Data |
+| [L1PIPE](#l1pipe) | First level analysis of functional data | Functional Data |
+| [RENDERPIPE](#renderpipe)| Render first level stats onto anatomy/ MNI | Structural and Functional Data |
 
 ***
 <a id='funcpipe'></a>
@@ -30,6 +30,9 @@ To access these tools:
 ## NORMPIPE
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+
+![alt text](https://i.imgbox.com/VqzPwUow.png "Title")
+
 ***
 
 ***
