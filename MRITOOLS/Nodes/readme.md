@@ -56,7 +56,7 @@ CONVERTER()
 ## SLICETIMER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| .nii file, TR | slice-timing corrected .nii file | fsl, nipype |
+| .nii file, TR (s) | slice-timing corrected .nii file | fsl, nipype |
 
 ### Description
 * Performs slice timing correction, using the FSL slicetimer algorithm.
@@ -83,11 +83,40 @@ SLICETIMER()
 
 ***
 
+<a id='mcorrector'></a>
+## MCORRECTOR
+| Inputs | Outputs | Dependencies |
+| --- | --- | --- |
+| .nii file | motion corrected .nii file, plots of motion parameters | fsl, nipype |
+
+### Description
+* Performs motion correction, using the FSL MCFLIRT algorithm.
+* Outputs the motion-corrected .nii file and plots of the estimated motion parameters.
+
+### Instructions
+* To call this function, in the ipython terminal type:
+
+```python
+from MRITOOLS.Nodes import MCORRECTOR
+MCORRECTOR()
+```
+
+* You will then be prompted to drag in the nifti file you wish to motion correct
+
+* A new directory will be created in the input directory called *'MCORRECTOR'* containing the outputs:
+
+1. / MCORRECTED - Motion corrected .nii file. Plots of the motion parameters (translations and rotations).
+
+### Notes
+* The reference volume is the middle volume.
+
+***
+
 <a id='extracter'></a>
 ## EXTRACTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| nifti file, fractional ansiotropy threshold (iterable), threshold gradient (iterable) | /REORIENTED /EXTRACTED | fsl, nipype, nilearn, matplotlib |
+| nifti file, fractional ansiotropy threshold (iterable), threshold gradient (iterable) | extracted brain, binary brain mask | fsl, nipype, nilearn, matplotlib |
 
 ![alt text](https://i.imgbox.com/Ut5Z5GIu.png "Title")
 
@@ -113,7 +142,7 @@ EXTRACTER()
 
 1. / REORIENTED - Reoriented file
 
-2. / EXTRACTED - Reoriented and extracted file
+2. / EXTRACTED - Reoriented and extracted file, binary brain mask.
 
 * The reoriented, extracted nifti file is plotted and overlayed on the original image to force check the result. 
 
@@ -142,22 +171,89 @@ will result in the following folder structure, each folder containing the result
 * Also contained within this folder is the function VERBOSE_EXTRACTER, which will apply 36 combinations of the two input parameters (linearly spaced). This is quite time consuming and memory intensive, but it  will give you a very thorough summary of impact the combinations of values have, so that you can refine future calls to EXTRACTER.
 ***
 
-<a id='mcorrector'></a>
-## MCORRECTOR
-| Inputs | Outputs | Dependencies |
-| --- | --- | --- |
-***
+
 
 <a id='smoother'></a>
 ## SMOOTHER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+| .nii brain, .nii binary brain mask, FWHM of smoother (interable, mm) | spatially smoothed .nii file | afni, nilearn, matplotlib, nipype |
+
+### Description
+* Performs spatial smoothing, using the AFNI 3DBlurinMask implementation.
+
+### Instructions
+* To call this function, in the ipython terminal type:
+
+```python
+from MRITOOLS.Nodes import SMOOTHER
+SMOOTHER()
+```
+* You will then be prompted to drag in a brain-extracted .nii file.
+
+* Next, you are prompted to drag in the binary brain mask (both of these are outputs of the EXTRACTER node).
+
+* Finally, you are required to input the FWHM of the smoother (mm).
+
+* A new directory will be created in the location of the input brain volume, titled *'SMOOTHER'*, containing the outputs:
+
+1. /SMOOTHED - Spatially smoothed .nii file
+
+* A plot of the first smoothed volume is displayed to force check the result. 
+
+### Iterables
+
+* The input parameter *FWHM* is iterable, it can be entered as a comma separated vector of values. If entered in this way, then the program will iterate through the inputted values. For instance, the input:
+
+```python
+[3,5,6]
+```
+will result in a smoothing kernel with a FWHM of 3,5 & 6 mm being applied.
+
 ***
 
 <a id='hpfilter'></a>
 ## HPFILTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+| .nii file, high pass filter cutoff (iterable, s), TR | temporally filtered .nii file | fsl, nipype |
+
+### Description
+* Performs high-pass temporal filtering, using fslmaths
+
+### Instructions
+* To call this function, in the ipython terminal type:
+
+```python
+from MRITOOLS.Nodes import HPFILTER
+HPFILTER()
+```
+* You will then be prompted to drag in a .nii file.
+
+* Next, you are prompted to input the high-pass filter cutoff (s)
+
+* Finally, you are required to input the TR (s)
+
+* A new directory will be created in the location of the input brain volume, titled *'HPFILTER'*, containing the outputs:
+
+1. /FILTERED - Temporally filtered file (with mean volume subtracted).
+2. /MEANVOL - Mean functional volume.
+3. /HIGHPASSED - Temporally filtered file (with mean volume added back on).
+
+### Iterables
+
+* The input parameter *High pass filter cutoff* is iterable, it can be entered as a comma separated vector of values. If entered in this way, then the program will iterate through the inputted values. For instance, the input:
+
+```python
+[90,120]
+```
+
+will result of a high-pass cutoff of 90 and 120 s being applied. 
+
+### Notes
+
+* A mean functional volume is created using fslmaths and added to the filtered data. This is because as of FSL version 5.0.7, the filtering operation subtracts the mean from the filtered data. 
+
 ***
 
 
