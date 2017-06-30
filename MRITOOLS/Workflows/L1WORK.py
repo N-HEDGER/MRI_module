@@ -29,6 +29,7 @@ def L1PIPE():
 	from nipype import Function
 	import matplotlib
 	import nipype.interfaces.utility as util
+	import os
 
 
 	#--- 2) Specify model node
