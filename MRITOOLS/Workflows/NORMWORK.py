@@ -141,31 +141,29 @@ def NORMPIPE():
 
 
   #--- 10)  Custom plotting functions.
-  def bplot(in_file, in_file2, MNI):
+  def bplot(in_file, MNI):
     from nilearn import image
     from nilearn import plotting
     import matplotlib
     niftifiledim=len(image.load_img(in_file).shape)
     display=plotting.plot_anat(template)    
     display.add_edges(in_file)
-    display.add_contours(in_file2,filled=True, alpha=0.4,levels=[0.2], colors='b')
     matplotlib.pyplot.show()
     return niftifiledim
 
 
-  def bplotN(in_file, in_file2, MNI):
+  def bplotN(in_file, MNI):
       from nilearn import image
       from nilearn import plotting
       import matplotlib
       niftifiledim=len(image.load_img(in_file).shape)
       display=plotting.plot_anat(MNI)    
       display.add_edges(in_file)
-      display.add_contours(in_file2,filled=True, alpha=0.4,levels=[0.2], colors='b')
       matplotlib.pyplot.show()
       return niftifiledim
 
-  showregL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplot),name='SHOWREG')
-  showregNL= pe.Node(Function(input_names=['in_file','in_file2','MNI'],output_names=['niftifiledim'],function=bplotN),name='SHOWREG')
+  showregL= pe.Node(Function(input_names=['in_file','MNI'],output_names=['niftifiledim'],function=bplot),name='SHOWREG')
+  showregNL= pe.Node(Function(input_names=['in_file','MNI'],output_names=['niftifiledim'],function=bplotN),name='SHOWREG')
 
 
   #--- 11)  Setup workflow
@@ -183,7 +181,6 @@ def NORMPIPE():
     workflow.connect(registerF2S,'out_matrix_file',outputnode,'funcmat')
     workflow.connect(registerF2S,'out_file',outputnode,'funcreg')
     workflow.connect(registerT12S,'out_file',outputnode,'structreg')
-    workflow.connect(registerF2S,'out_file',showregL,'in_file2')
     workflow.connect(registerT12S,'out_file',showregL,'in_file')
     workflow.connect(inputnode,'standard',showregL,'MNI')
     workflow.write_graph(graph2use='exec')
@@ -202,7 +199,6 @@ def NORMPIPE():
     workflow.connect(antsregfast,'warped_image',outputnode,'warped')
     workflow.connect([(antsregfast, apply2mean, [('composite_transform','transforms')])])
     workflow.connect(antsregfast,'warped_image',showregNL,'in_file')
-    workflow.connect(apply2mean,'output_image',showregNL,'in_file2')
     workflow.connect(inputnode,'standard',showregNL,'MNI')
     workflow.write_graph(graph2use='exec')
     workflow.run()
