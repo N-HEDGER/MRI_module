@@ -62,7 +62,7 @@ workflow.connect(Model,'design_image',outputnode,'im')
 def plot(in_file):
 	from nilearn import image
 	from nilearn import plotting
-	display=plotting.plot_stat_map(stat_map_img=in_file,black_bg=bool(1),display_mode='z',cut_coords=20,threshold=float(2.3))
+	display=plotting.plot_stat_map(stat_map_img=in_file,black_bg=bool(1),bg_img=False,display_mode='z',cut_coords=10,threshold=float(2.3))
 
 
 

@@ -187,7 +187,7 @@ def NORMPIPE():
     workflow.connect(registerT12S,'out_file',showregL,'in_file')
     workflow.connect(inputnode,'standard',showregL,'MNI')
     workflow.write_graph(graph2use='exec')
-    workflow.run(plugin='MultiProc')
+    workflow.run()
   elif alsonorm == bool(1):
     workflow.connect(epireg,'epi2str_mat',outputnode,'epimat')
     workflow.connect(epireg,'epi2str_mat',concatxfm,'in_file')
@@ -205,7 +205,7 @@ def NORMPIPE():
     workflow.connect(apply2mean,'output_image',showregNL,'in_file2')
     workflow.connect(inputnode,'standard',showregNL,'MNI')
     workflow.write_graph(graph2use='exec')
-    workflow.run(plugin='MultiProc')
+    workflow.run()
 
 
   print "Node completed. Returning to intital directory\n"
