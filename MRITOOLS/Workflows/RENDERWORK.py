@@ -48,8 +48,8 @@ def RENDERPIPE():
 	template = Info.standard_image('MNI152_T1_2mm_brain.nii.gz')
 	in_file=raw_input('Please drag in the stats image')
 	in_matrix_file=raw_input('Please drag in the combined registration matrix\n')
-	thresh=float(raw_input('Please enter the threshold \n'))
 	transforms=raw_input('Please drag in the ANTs normalisation composite transform\n')
+	thresh=float(raw_input('Please enter the threshold \n'))
 
 	#--- 3)  Make input node
 	inputnode = pe.Node(interface=util.IdentityInterface(fields=['thresh']),name='inputnode')
