@@ -29,6 +29,31 @@ To access these tools:
 * Takes in a folder of DICOM files as input, performs conversion, reorientation, slice-timing correction, motion correction, despiking, brain extraction, smoothing & high-pass filtering.
 * Outputs a mean functional volume prior to smoothing for registration/ visualisation of data. 
 
+### Instructions
+* To call this function, in the ipython terminal, type:
+
+```python
+from MRITOOLS.Workflows import FUNCPIPE
+FUNCPIPE()
+```
+* You will first be prompted to drag in the directory of DICOM files for your functional run.
+
+* Next, you will be required to enter the fractional anisotropy threshold for the extraction [0 - 1].
+
+* Next, you will be required to enter the threshold gradient for the extraction [-1 - 1].
+
+* Next, you will be required to enter the FWHM for the smoothing kernel (mm).
+
+• Next, you will be required to enter the cutoff for the high-pass filter (s).
+
+* Finally, you will be required to enter the TR (s).
+
+* A new directory will be created called *'FUNCPIPE'* containing the outputs. The fully pre-processed data is contained in the *'PREPROCESSED'* directory, the mean functional volume is contained within the *'MEANFUNCTIONAL'* directory.
+
+* Plots of the extraction and smoothing are returned.
+
+
+
 ***
 
 ***
