@@ -9,7 +9,7 @@ To access these tools:
 
 # Index
 | Node | Description | Apply to |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | [FUNCPIPE](#funcpipe) | Functional pre-processing workflow | Functional Data |
 | [NORMPIPE](#normpipe) | Registration and normalisation workflow | Structural and Functional Data |
 | [L1PIPE](#l1pipe) | First level analysis of functional data | Functional Data |
