@@ -60,6 +60,21 @@ To access these tools:
 ## L1PIPE
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+| 1) pre-processed .nii file 2) TR (s) 3) High pass filter cutoff (s) 4) Directory containing 3-column event files | fsl, nipype, nilearn, matplotlib | 
+
+### Description
+* Workflow for performing a simple level 1 analysis on the example data.
+* Data should be pre-processed (i.e. output of FUNCPIPE).
+* It is useless for anything else unless the Designer node is modified.
+* Plots the stats images using nilearn.
+
+
+![alt text](https://i.imgbox.com/vsthco54.png "Title")
+
+![alt text](https://i.imgbox.com/E8WY7bbk.png "Title")
+
+![alt text](https://i.imgbox.com/kl6pOFrU.png "Title")
+
 ***
 
 <a id='renderpipe'></a>
@@ -67,6 +82,10 @@ To access these tools:
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
 | 1) Stats image 2) Combined linear transform matrix to MNI 3) ANTs composite warping transform to MNI 4) Threshold | Stats image rendered to MNI/ subject anatomical space | ANTs, FSL, nilearn, matplotlib, nipype |
+
+### Description
+* Workflow to render stats images to the MNI template/ structural volume.
+* Requires that you run NORMPIPE first to get the transformation matrices and L1PIPE first to get the stats images. 
 
 ![alt text](https://i.imgbox.com/9NhMmVHs.png "Title")
 
