@@ -62,5 +62,9 @@ To access these tools:
 ## RENDERPIPE
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
+| 1) Stats image 2) Combined linear transform matrix to MNI 3) ANTs composite warping transform to MNI 4) Threshold | Stats image rendered to MNI/ subject anatomical space | ANTs, FSL, nilearn, matplotlib, nipype |
+
+![alt text](https://i.imgbox.com/9NhMmVHs.png "Title")
+
 ***
 
