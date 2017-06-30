@@ -45,7 +45,8 @@ def L1PIPE():
 	specify_model.inputs.time_repetition = float(raw_input('Enter the TR (s)\n'))
 	specify_model.inputs.high_pass_filter_cutoff = float(raw_input('Enter the High pass filter cutoff (s)\n'))
 	EVENTFILES=raw_input('Please drag in the directory of 3 column event files')
-	EVENTFILESLIST=glob.glob(EVENTFILES.strip('\'"'))
+	EVENTFILES2=EVENTFILES.strip('\'"')
+	EVENTFILESLIST=glob.glob(EVENTFILES2 + '/*')
 	specify_model.inputs.event_files=sorted(EVENTFILESLIST)
 
 
