@@ -77,9 +77,10 @@ def RENDERPIPE():
 		from nilearn import image
 		from nilearn import plotting
 		import matplotlib
+		niftifiledim=len(image.load_img(in_file).shape)
 		display=plotting.plot_stat_map(stat_map_img=in_file,black_bg=bool(1),display_mode='z',cut_coords=10,threshold=float(threshold))
 		matplotlib.pyplot.show()
-		return display
+		return niftifiledim
 
 	plotter=pe.MapNode(Function(input_names=['in_file','threshold'],output_names='display',function=plot),iterfield=['in_file'],name='PLOTTER')
 
