@@ -59,7 +59,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 * A python environment (mritool) is activated by deafult via [anaconda](https://www.continuum.io/downloads). This has a number of neuroimaging packages installed (nipype, nilearn, nibabel, MRITOOLS itself).
 
-* [Here](https://drive.google.com/open?id=0B6MT4TSJ7f53cG4xRTNWV2hDRXM) is a list of modules that are installed in this environment and their versions: You can create this list yourself via entering the command: 'conda list' into the terminal.
+* [Here](https://drive.google.com/open?id=0B6MT4TSJ7f53cG4xRTNWV2hDRXM) is a list of modules that are installed in this environment and their versions. You can create this list yourself via entering the command: 'conda list' into the terminal.
 
 * If you want to install new packages, or update existing ones, you can do this via entering the following into the terminal: 
 
