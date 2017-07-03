@@ -37,7 +37,7 @@ def EXTRACTER():
 	print '---\n'
 	NIFTIFILE=NIFTIFILE.strip('\'"')
 	NIFTIDIR=os.path.split(NIFTIFILE)[0]
-	frac=input('Please input the fractional ansiotropy threshold \n in the range [0-1]\n')
+	frac=input('Please input the fractional anisotropy threshold \n in the range [0-1]\n')
 	os.system('clear')
 	print '---\n'
 	grad=input('Please input the gradient \n in the range [-1 1]\n')
