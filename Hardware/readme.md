@@ -1,6 +1,7 @@
 # Hardware
 
 ## fMRI Virtual Machine
+
 ![alt text](https://i.imgbox.com/GgMktKyo.png "Title")
 
 ### Specifications and requirements
@@ -21,11 +22,16 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 1. First of all, follow the installation instructions to install VirtualBox on your computer.
 2. Next, download the fMRI virtual machine from [this address](https://drive.google.com/open?id=0B6MT4TSJ7f53VU1XcnhySUY2aDg) (this is a large file (around 10GB) and so may take quite a while to downloads).
 3. Next, open VirtualBox and go to *file - import appliance* and select the .ova file you downloaded in step 2 (below).
+
 ![alt text](https://i.imgbox.com/OBhfqBwO.png "Title")
+
 4. The fMRI virtual machine (fMRI_VM) should now appear in the left panel of the VirtualBox window (below).
+
 ![alt text](https://i.imgbox.com/4EYLQeKN.png "Title")
+
 5. Double clicking on the virtual machine will boot it.
 6. When prompted for a login (below), type 'fmri2016'.
+
 ![alt text](https://i.imgbox.com/tjKj9wg2.png "Title")
 
 
