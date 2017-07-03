@@ -56,7 +56,7 @@ def RENDERPIPE():
 	inputnode.inputs.thresh=thresh
 
 	#--- 4)  Node for registering to MNI
-	registerF2S=pe.Node(interface=fsl.ApplyXfm(),name='RENDEREDREG')
+	registerF2S=pe.Node(interface=fsl.ApplyXFM(),name='RENDEREDREG')
 	registerF2S.inputs.reference=template
 	registerF2S.inputs.in_file=in_file.strip('\'"')
 	registerF2S.inputs.in_matrix_file=in_matrix_file.strip('\'"')
