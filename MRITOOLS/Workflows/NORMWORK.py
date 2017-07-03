@@ -90,7 +90,7 @@ def NORMPIPE():
 
 
   #--- 6)  Register the EPI to the standard, using the combined transformation matrix
-  registerF2S=pe.Node(interface=fsl.ApplyXfm(),name='REGISTEREDF2MNI')
+  registerF2S=pe.Node(interface=fsl.ApplyXFM(),name='REGISTEREDF2MNI')
   registerF2S.inputs.reference=template
   registerF2S.inputs.in_file=epireg.inputs.epi
 
