@@ -6,7 +6,7 @@
 
 ### Specifications and requirements
 The fMRI virtual machine is configured with *~4GB* of RAM, a virtual hard disk that will grow to **50GB** in size and shared networking.
-It will require a **64 bit** operating system to run. A computer with at least *8GB* is recommended to run the machine.
+It will require a **64 bit** operating system to run. A computer with at least *8GB* RAM is recommended to run the machine.
 
 ### Details
 | | | 
@@ -18,7 +18,7 @@ It will require a **64 bit** operating system to run. A computer with at least *
 
 ### Installation instructions.
 
-The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates the hardware of a PC, allowing you to run a second operating system 'in a window'of your personal computer.  
+The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates the hardware of a PC, allowing you to run a second operating system 'in a window' of your personal computer.  
 
 1. First of all, follow the installation instructions on the VirtualBox website to install VirtualBox on your computer.
 
@@ -30,13 +30,13 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 ![alt text](https://i.imgbox.com/OBhfqBwO.png "Title")
 
 
-4. The fMRI virtual machine (fMRI_VM) should now appear in the left panel of the VirtualBox window (below).
+4. After a brief wait, The fMRI virtual machine (fMRI_VM) should now appear in the left panel of the VirtualBox window (below).
 
 
 ![alt text](https://i.imgbox.com/4EYLQeKN.png "Title")
 
 
-5. Double clicking on the fMRI_VM will boot it.
+5. Double clicking on the fMRI_VM will boot it. Wait a short while for the login screen to appear.
 
 6. When prompted for a login (below), type 'fmri2016'.
 
@@ -78,7 +78,6 @@ pip install --upgrade packagename
 ```
 updateMRITOOLS
 ```
-
 
 ## Linux Machines
 
