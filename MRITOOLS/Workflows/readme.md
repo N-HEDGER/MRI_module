@@ -164,7 +164,7 @@ L1PIPE()
 from MRITOOLS.Workflows import RENDERPIPE
 RENDERPIPE()
 ```
-* You will first be prompted to drag in the statistics image (e.g. z or t image, output from FUNCPIPE).
+* You will first be prompted to drag in the statistics image (e.g. z or t image, output from L1PIPE).
 
 * You will then be prompted to input the matrix that transforms from the subjects functional image to MNI space (e.g. the output of RENDERPIPE/CONCATMATRICES.
 
