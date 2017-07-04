@@ -36,7 +36,7 @@ def L1PIPE():
 	specify_model = pe.Node(interface=model.SpecifyModel(), name="SPECIFY_MODEL")
 	specify_model.inputs.input_units = 'secs'
 
-	runs=raw_input('Please drag in the directory of pre-processsed functional data\n')
+	runs=raw_input('Please drag in the pre-processsed functional data\n')
 	runs2= runs.strip('\'"')
 
 	NIFTIDIR=os.path.split(runs2)[0]
