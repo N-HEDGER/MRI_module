@@ -2,9 +2,9 @@
 
 ![alt text](https://www.python.org/static/favicon.ico "Title")
 # General instructions
-To access these tools:
-1. Open the terminal
-2. Type *ipython* to load the ipython terminal
+To interact with these tools on the fMRI virtual machine:
+1. Open the terminal.
+2. Type *mriconsole* to load the ipython terminal.
 ***
 # Index
 | Node | Phase | Description | Apply to |
