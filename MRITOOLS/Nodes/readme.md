@@ -224,7 +224,7 @@ will result in a smoothing kernel with a FWHM of 3,5 & 6 mm being applied.
 ## HPFILTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| .nii file, high pass filter cutoff (iterable, s), TR | temporally filtered .nii file | fsl, nipype |
+| i) .nii file ii) high pass filter cutoff (iterable, s) ii) TR | i) temporally filtered .nii file ii) mean functional volume | fsl, nipype |
 
 ![alt text](https://i.imgbox.com/eoqdBFXo.png "Title")
 
