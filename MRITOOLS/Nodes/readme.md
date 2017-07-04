@@ -22,7 +22,7 @@ To access these tools:
 
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| Directory containing DICOM files | /CONVERTED /REORIENTED | dcm2nii, fsl, nipype, nilearn, matplotlib |
+| i) Directory containing DICOM files | i) converted .nii file ii) reoriented .nii file | dcm2nii, fsl, nipype, nilearn, matplotlib |
 
 ![alt text](https://i.imgbox.com/tQKKtAOV.png "Title")
 
@@ -56,7 +56,9 @@ CONVERTER()
 ## SLICETIMER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| .nii file, TR (s) | slice-timing corrected .nii file | fsl, nipype |
+| i) .nii file ii) TR (s) | i) slice-timing corrected .nii file | fsl, nipype |
+
+![alt text](https://i.imgbox.com/j0CDjG3V.png "Title")
 
 ### Description
 * Performs slice timing correction, using the FSL slicetimer algorithm.
@@ -75,7 +77,7 @@ SLICETIMER()
 
 * A new directory will be created in the input directory called *'SLICETIMER'* containing the outputs:
 
-1. / SLICETIMED - Slice-timing corrected file.
+1. / SLICETIMED - Slice-timing corrected nifti file (with suffix 'st').
 
 ### Notes
 * An interleaved aquisition is assumed, since it is the most common.
@@ -87,7 +89,10 @@ SLICETIMER()
 ## MCORRECTOR
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| .nii file | motion corrected .nii file, plots of motion parameters | fsl, nipype |
+| i) .nii file | i) motion corrected .nii file ii) plots of motion parameters | fsl, nipype |
+
+![alt text](https://i.imgbox.com/HtOAWsDc.png "Title")
+
 
 ### Description
 * Performs motion correction, using the FSL MCFLIRT algorithm.
@@ -105,7 +110,10 @@ MCORRECTOR()
 
 * A new directory will be created in the input directory called *'MCORRECTOR'* containing the outputs:
 
-1. / MCORRECTED - Motion corrected .nii file. Plots of the motion parameters (translations and rotations).
+1. / MCORRECTED - Motion corrected .nii file. Plots of the motion parameters (translations (below) and rotations).
+
+![alt text](https://i.imgbox.com/hjaQb9Gc.png "Title")
+
 
 ### Notes
 * The reference volume is the middle volume.
@@ -116,7 +124,7 @@ MCORRECTOR()
 ## EXTRACTER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| nifti file, fractional ansiotropy threshold (iterable), threshold gradient (iterable) | extracted brain, binary brain mask | fsl, nipype, nilearn, matplotlib |
+| i) nifti file ii) fractional anisotropy threshold (iterable) iii) threshold gradient (iterable) | i) extracted brain .nii file ii) binary brain mask .nii file | fsl, nipype, nilearn, matplotlib |
 
 ![alt text](https://i.imgbox.com/Ut5Z5GIu.png "Title")
 
@@ -171,13 +179,13 @@ will result in the following folder structure, each folder containing the result
 * Also contained within this folder is the function VERBOSE_EXTRACTER, which will apply 36 combinations of the two input parameters (linearly spaced). This is quite time consuming and memory intensive, but it  will give you a very thorough summary of impact the combinations of values have, so that you can refine future calls to EXTRACTER.
 ***
 
-
-
 <a id='smoother'></a>
 ## SMOOTHER
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
-| .nii brain, .nii binary brain mask, FWHM of smoother (interable, mm) | spatially smoothed .nii file | afni, nilearn, matplotlib, nipype |
+| i) .nii brain, ii) .nii binary brain mask iii) FWHM of smoother (interable, mm) | i) spatially smoothed .nii file | afni, nilearn, matplotlib, nipype |
+
+![alt text](https://i.imgbox.com/2vENpEOU.png "Title")
 
 ### Description
 * Performs spatial smoothing, using the AFNI 3DBlurinMask implementation.
@@ -199,7 +207,7 @@ SMOOTHER()
 
 1. /SMOOTHED - Spatially smoothed .nii file
 
-* A plot of the first smoothed volume is displayed to force check the result. 
+* A plot of the first smoothed volume is displayed to force check the result.
 
 ### Iterables
 
@@ -217,6 +225,8 @@ will result in a smoothing kernel with a FWHM of 3,5 & 6 mm being applied.
 | Inputs | Outputs | Dependencies |
 | --- | --- | --- |
 | .nii file, high pass filter cutoff (iterable, s), TR | temporally filtered .nii file | fsl, nipype |
+
+![alt text](https://i.imgbox.com/eoqdBFXo.png "Title")
 
 ### Description
 * Performs high-pass temporal filtering, using fslmaths
