@@ -166,9 +166,9 @@ RENDERPIPE()
 ```
 * You will first be prompted to drag in the statistics image (e.g. z or t image, output from L1PIPE).
 
-* You will then be prompted to input the matrix that transforms from the subjects functional image to MNI space (e.g. the output of RENDERPIPE/CONCATMATRICES.
+* You will then be prompted to input the matrix that transforms from the subjects functional image to MNI space (e.g. the output of NORMPIPE/CONCATMATRICES.
 
-* Next you will be prompted to input the matrix that normalised the subjects T1 to the MNI (e.g. the output of RENDERPIPE/NORMSTRUCT).
+* Next you will be prompted to input the matrix that normalised the subjects T1 to the MNI (e.g. the output of NORMPIPE/NORMSTRUCT).
 
 * Lastly, you will be prompted to input the threshold to apply to the statistics image (this is for plotting purposes, entering *2.3* will render voxels with a z score of >2.3 onto the MNI brain).
 
