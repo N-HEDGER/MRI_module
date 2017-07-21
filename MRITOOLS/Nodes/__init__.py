@@ -1,6 +1,6 @@
 print 'loading nodes'
 
-from .CONVERT import CONVERTER
+from .CONVERT import CONVERTER, CONVERTER2
 from .EXTRACT import EXTRACTER
 from .EXTRACT import VERBOSE_EXTRACTER
 from .SLICETIME import SLICETIMER
