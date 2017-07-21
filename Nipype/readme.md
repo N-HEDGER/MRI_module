@@ -7,7 +7,7 @@ Currently, there is a huge range of software packages for fMRI analysis. Well-kn
 
 ![alt text](https://i.imgbox.com/FOp1JK5t.png "Title")
 
-On the surface, this wide array of choices seems like a good thing, but it is actually associated with a range of issues
+On the surface, this wide array of choices seems like a good thing, but it is actually associated with a range of issues.
 
 ### No unifying operating interface
 
@@ -22,17 +22,17 @@ To make matters worse, some software packages do not work on some operating syst
 
 ### The learning curve
 
-Another issue associated with this, is the substantial learning curve involved.
+Another issue associated with all this is the substantial learning curve involved.
 
 Each of these software packages have their own quirks, parameters and usages that require extensive time and interaction to learn.
 
-For instance, someone that wanted to use both SPM and FSL would have to learn both MATLAB and UNIX programming, which is a non-trivial task.
+For instance, someone that wanted to use both SPM and FSL would have to learn both MATLAB and UNIX programming, which is a non-trivial task. In the context of a PhD for instance, this could take up a substantial chunk of your time. 
 
 Perhaps because of this, researchers tend to remain ‘loyal’ to a particular software package, to avoid investing the time involved in learning how to use more than one.
 
 This is bad practice, because some software packages are proven to be better at some aspects of pre-processing than others.
 
-For instance, unbiased tests have shown that ANTs is found to be far superior to FSL at normalization, but many people would be reluctant to learn ANTS for one task if they already know FSL.
+For instance, unbiased tests have shown that ANTs is found to be far superior to FSL at normalization, but many people would be reluctant to learn ANTS for just one task if they have already invested their time in learning FSL.
 
 ### Lack of transparency
 
@@ -58,7 +58,7 @@ Next, you define nodes (these are the particular processes performed by the inte
 
 As a next step, you define inputs for your nodes (for instance, the volume that you want to perform the spatial smoothing on).
 
-Lastly, you can connect nodes together to form a workflow (for instance, I may want to perform slice timing correction with FSL and then spatial smoothing with SPM).
+Next, you can connect nodes together to form a workflow (for instance, I may want to perform slice timing correction with FSL and then spatial smoothing with SPM).
 
 Finally, you run the workflow.
 
@@ -88,9 +88,17 @@ It produces an intuitively appealing graph, that displays the workflow.
 
 Nipype then produces a folder for each node. /CONVERTED contains the converted nifti file and /REORIENTED contains the reoriented and converted nifti file.
 
+This is obviously a very straightforward workflow, but we can extend this example to form a full pre-processing pipeline for fMRI data. 
+
+The example below takes a folder of DICOM files as input (fresh from the scanner), performs conversion to nifti, slice timing correction, motion correction, brain extraction, spatial smoothing and high pass temporal filtering. The final output is a nifti file that is fully-preprocessed and ready for a first level analysis. 
+
+![alt text](https://i.imgbox.com/XRj6zpoZ.png "Title")
+
+One nice feature of the workflow is that it is fully customised - dcm2nii is employed for converting the data, FSL commands are employed for slice timing correction and motion correction, AFNI commands are employed for despiking and smoothing the data and the python module 'nilearn' is employed for plotting the outputs at various stages. 
+
 ## Why Python/ Nipype? 
 
-It’s now probably worth discussing the reasons why Python is an appropriate engine for fMRI analysis.
+It’s now probably worth discussing more general reasons why Python is an appropriate engine for fMRI analysis.
 
 Firstly, Python is free.
 
