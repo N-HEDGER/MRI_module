@@ -11,12 +11,12 @@ On the surface, this wide array of choices seems like a good thing, but it is ac
 
 ### No unifying operating interface
 
-The first problem is that these different software packages are interfaces with in fundamentally different ways. For instance:
+The first problem is that these different software packages are interfaced with in fundamentally different ways. For instance:
 * We interact with FSL, Freesurfer and AFNI commands via shell scripting.
 * SPM is implemented in MATLAB
 * Other options such as Nipy and Nilearn are implemented in Python.
 
-This means that there is no unfying operating interface - we have to use different applications and programming languages.
+This means that there is no unifying operating interface - we have to use different applications and programming languages.
 
 To make matters worse, some software packages do not work on some operating systems. For instance FSL and Freesurfer do not work on windows.
 
