@@ -24,13 +24,13 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 2. Next, download the fMRI virtual machine from [this address](https://drive.google.com/open?id=0B6MT4TSJ7f53VU1XcnhySUY2aDg) (this is a large file (around 10GB) and so may take quite a while to download).
 
-3. Next, open the VirtualBox application and go to *file - import appliance*. Select the .ova file you downloaded in step 2 (below).
+3. Next, open the VirtualBox application and go to *file - import appliance*. Select the .ova file you downloaded in step 2 (below) and continue with all the default options.
 
 
 ![alt text](https://i.imgbox.com/OBhfqBwO.png "Title")
 
 
-4. After a brief wait, The fMRI virtual machine (fMRI_VM) should now appear in the left panel of the VirtualBox window (below).
+4. After the import has completed, The fMRI virtual machine (fMRI_VM) should now appear in the left panel of the VirtualBox window (below).
 
 
 ![alt text](https://i.imgbox.com/4EYLQeKN.png "Title")
@@ -45,13 +45,18 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 ![alt text](https://i.imgbox.com/tjKj9wg2.png "Title")
 
+
+8. You can shut down the machine at any time by simply closing the window. 
+
 ### Configuring the memory allocated to the VM.
 
 * By default, 4GB of memory will allocated to the machine. You may want to allocate more (or less) depending on the memory specs of your personal computer. 
 
 * To do this, before booting the machine, highlight it and navigate to *settings - system*. You will then be given the option to alter the memory that is allocated to the machine via a slider (below). It is not recommended that you allocate any more memory than is indicated by the green region of the slider.
 
+
 ![alt text](https://i.imgbox.com/VBmAJF9G.png "Title")
+
 
 * In general, anything below 2GB RAM is likely to cause the VM to run very slowly. I wouldn't recommend anything below 4GB. 
 
@@ -79,7 +84,6 @@ pip install --upgrade packagename
 updateMRITOOLS
 ```
 
-## Linux Machines
 
 
 
