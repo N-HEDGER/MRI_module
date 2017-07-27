@@ -71,7 +71,7 @@ def L1PIPE():
 	fgls.inputs.in_file=runs2
 
 	#--- 7) outputnode for the design image (gets binned otherwise)
-	outputnode = pe.Node(interface=util.IdentityInterface(fields=['im']),name='outputnode')
+	outputnode = pe.Node(interface=util.IdentityInterface(fields=['im','cope','varcope','dof','resid']),name='outputnode')
 
 
 	#--- 8)  Plotting node
@@ -95,8 +95,15 @@ def L1PIPE():
 	workflow.connect(Model,'design_file',fgls,'design_file')
 	workflow.connect(Model,'con_file',fgls,'tcon_file')
 	workflow.connect(Model,'design_image',outputnode,'im')
+	
 	# Feed the z stats to the plotter.
 	workflow.connect(fgls,'zstats',plotter,'in_file')
+	workflow.connect(fgls,'copes',outputnode,'cope')
+	workflow.connect(fgls,'varcopes',outputnode,'varcope')
+	workflow.connect(fgls,'dof_file',outputnode,'dof')
+	workflow.connect(fgls,'residual4d',outputnode,'resid')
+
+
 
 
 	workflow.base_dir = NIFTIDIR
