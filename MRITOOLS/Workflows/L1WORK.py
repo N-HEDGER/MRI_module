@@ -71,7 +71,7 @@ def L1PIPE():
 	fgls.inputs.in_file=runs2
 
 	#--- 7) outputnode for the design image (gets binned otherwise)
-	outputnode = pe.Node(interface=util.IdentityInterface(fields=['im','cope','varcope','dof','resid']),name='outputnode')
+	outputnode = pe.Node(interface=util.IdentityInterface(fields=['im','cope','varcope','dof','resid','params']),name='outputnode')
 
 
 	#--- 8)  Plotting node
@@ -102,6 +102,8 @@ def L1PIPE():
 	workflow.connect(fgls,'varcopes',outputnode,'varcope')
 	workflow.connect(fgls,'dof_file',outputnode,'dof')
 	workflow.connect(fgls,'residual4d',outputnode,'resid')
+	workflow.connect(fgls,'param_estimates',outputnode,'params')
+	
 
 
 
