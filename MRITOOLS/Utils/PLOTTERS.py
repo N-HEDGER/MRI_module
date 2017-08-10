@@ -35,7 +35,7 @@ def PLOTHRFS():
 
 	INITDIR=os.getcwd();
 
-	EVENTFILES=raw_input('Please drag in the directory of 3 column event files')
+	EVENTFILES=input('Please drag in the directory of 3 column event files')
 	maxT=raw_input('Please give the length of the run in seconds')
 	EVENTFILES2=EVENTFILES.strip('\'"')
 	EVENTFILESLIST=glob.glob(EVENTFILES2 + '/*')
