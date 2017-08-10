@@ -84,8 +84,9 @@ def PLOTHRFS():
 			for fname in in_file:
 				with open(fname) as infile:
 					outfile.write(infile.read())
-		outfile=outfile.name
-		return os.path.abspath(outfile)
+		outfilename=outfile.name
+		print(os.path.abspath(outfilename))
+		return os.path.abspath(outfilename)
 
 	# Plot the overall regressor
 	def hrfplot2(in_file,maxT):
@@ -114,7 +115,7 @@ def PLOTHRFS():
 		plt.legend()
 		plt.show()
 
-
+	
 	# Create utility nodes
 	plotter=pe.MapNode(Function(input_names=['in_file','maxT'],output_names='bb',function=hrfplot),iterfield=['in_file'],name='PLOTTER')
 
@@ -125,7 +126,7 @@ def PLOTHRFS():
 	outputnode = pe.Node(interface=util.IdentityInterface(fields=['out_file']),name='outputnode')
 
 	workflow = pe.Workflow(name='PLOTHRF')
-
+	workflow.base_dir = EVENTFILES
 	# Connect nodes
 	workflow.connect(inputnode,'dir',plotter,'in_file')
 	workflow.connect(inputnode,'dir',concat,'in_file')
@@ -134,7 +135,7 @@ def PLOTHRFS():
 	workflow.connect(concat,'outfile',plotter2,'in_file')
 	workflow.connect(inputnode,'max',plotter2,'maxT')
 	workflow.write_graph(graph2use='exec')
-	workflow.base_dir = EVENTFILES
+	
 
 	workflow.run()
 
