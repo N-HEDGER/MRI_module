@@ -1,5 +1,5 @@
 # MRITOOLS
-This package consists of [Nodes](/MRITOOLS/Nodes) and [Workflows](/MRITOOLS/Workflows)
+This package consists of [Nodes](/MRITOOLS/Nodes), [Workflows](/MRITOOLS/Workflows) and [Utils](/MRITOOLS/Utils)
 
 ## [Nodes](/MRITOOLS/Nodes)
 Nodes are self contained functions for data-preprocessing, including:
@@ -33,3 +33,7 @@ Executing the functional pre-processing workflow:
 from MRITOOLS.Workflows import FUNCPIPE
 FUNCPIPE()
 ```
+
+## [Utils](/MRITOOLS/Utils)
+
+Utils are a set of functions that are not necessarily part of the pre-processing pipeline but are convenient for data manipulation/ plotting (cropping volumes, printing nifti headers). These are under development. Details are provided in the readme.
