@@ -53,7 +53,7 @@ def L1PIPE():
 	#--- 3) Level 1 design node.
 	Designer=pe.Node(interface=fsl.Level1Design(),name='DESIGN')
 	Designer.inputs.interscan_interval = float(specify_model.inputs.time_repetition)
-	Designer.inputs.bases = {'dgamma':{'derivs': True}}
+	Designer.inputs.bases = {'dgamma':{'derivs': False}}
 	Designer.inputs.model_serial_correlations=bool(0)
 
 	#--- 4) Make some contrasts
