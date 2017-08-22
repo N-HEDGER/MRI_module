@@ -191,12 +191,12 @@ def FIRPIPE():
 			afnistr.append('-stim_times' + ' ' + str(infile+1) + ' ' + filenames[infile] + ' ' + "'TENT(0,12,7)'" + ' ' + '-stim_label' + ' ' + str(infile+1) + ' ' + os.path.splitext(os.path.split(filenames[infile])[1])[0])
 			print (afnistr[infile])
 		afnicmd=' '.join(afnistr)
-		precmd='3dDeconvolve -input' + ' ' + func + ' ' '-bucket' + ' ' + 'output.nii' + ' ' + '-num_stimts' + ' ' + str(len(filenames))
-		acmd= '-xjpeg X.jpg -fout -tout -bout -x1D matrix -cbucket TENTs'
+		precmd='3dDeconvolve -input' + ' ' + func + ' ' + '-bucket' + ' ' + 'fullstats' + ' ' + '-num_stimts' + ' ' + str(len(filenames))
+		acmd= '-xjpeg X.jpg -fout -tout -bout -x1D matrix -cbucket betas'
 		cmd=' '.join([precmd,afnicmd])
 		cmd2=' '.join([cmd,acmd])
 		os.system(cmd2)
-		os.system('3Dinfo -verb TENTS')
+		os.system('3dinfo -verb fullstats')
 		return cmd2
 
 
