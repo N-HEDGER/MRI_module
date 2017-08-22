@@ -134,7 +134,7 @@ def L1PIPE():
 # The output data is stored in afni format and nii format.
 
 
-def FIRIPE(): 
+def FIRPIPE(): 
 	# ---1) Import modules
 	import nipype.pipeline.engine as pe
 	import glob
