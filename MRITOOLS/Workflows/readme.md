@@ -12,10 +12,12 @@ To interact with these tools on the fMRI virtual machine:
 # Index
 | Node | Description | Apply to |
 | --- | --- | --- |
-| [FUNCPIPE](#funcpipe) | Functional pre-processing workflow | Functional Data |
-| [NORMPIPE](#normpipe) | Registration and normalisation workflow | Structural and Functional Data |
-| [L1PIPE](#l1pipe) | First level analysis of functional data | Functional Data |
+| [FUNCPIPE](#funcpipe) | Functional pre-processing workflow using FSL and AFNI | Functional Data |
+| [NORMPIPE](#normpipe) | Registration and normalisation workflow with ANTs and FSL | Structural and Functional Data |
+| [L1PIPE](#l1pipe) | First level analysis of functional data using FSL | Functional Data |
+| [FIRPIPE](#firpipe) | Finite impulse response analysis of functional data using AFNI | Functional Data |
 | [RENDERPIPE](#renderpipe)| Render first level stats onto anatomy/ MNI | Structural and Functional Data |
+
 
 ***
 <a id='funcpipe'></a>
@@ -143,6 +145,43 @@ L1PIPE()
 2) /FILM_GLS - z statistic .nii files. These will be plotted.
 
 ![alt text](https://i.imgbox.com/kl6pOFrU.png "Title")
+
+***
+
+<a id='firpipe'></a>
+## FIRPIPE
+| Inputs | Outputs | Dependencies |
+| --- | --- | --- |
+| 1) Preprocessed .nii file 2) Directory of event onset files| .jpg of model matrix, 1D plot of model matrix, AFNI bucket (fullstats), beta-weight bucket (betas) | afni, nipype|   
+
+### Description
+* Uses AFNI 3Ddeconvolve to estimate the shape of the HRF for each stimulus type in each voxel.
+* Takes in a folder of 3 column event onset files (FSL format) and a pre-processed .nii file as inputs. Event files are converted to AFNI format, then these are used to form basis functions. As per AFNI default, each stimulus event is modeled as 7 basis functions (HRF of 12 seconds, with 7 beta weights to be estimated, starting at stimulus onset).
+* The full statistical dataset (F,t and beta) are output to an AFNI bucket 'fullstats'.
+* The beta weights are also extracted and sent to a seperate AFNI bucket 'betas'.
+* After the model fitting, AFNIs '3Dinfo' command is called to show the contents of the fullstats bucket.
+
+### Instructions
+* To call this function, in the ipython terminal, type:
+
+```python
+from MRITOOLS.Workflows import FIRPIPE
+FIRPIPE()
+```
+
+* You will first be prompted to drag in a directory of 3 column event onset files.
+
+* Next, you will be required to drag in your pre-processed .nii file (output of FUNCPIPE or equivalent).
+
+* A new directory will be created called *'FIRPIPE'* containing the outputs. The event files converted to afni format are in the
+*'AFNIFYTXT'* directory. The *'AFNIFYCMD'* directory contains:
+
+1) fullstats - an afni bucket containing all statistical volumes (F, t and beta). There will be a statistical image for each basis function for each stimulus type (i.e. 7 for each stimulus type). Also returned are the statistical volumes for the linear and constant terms (AFNI default).
+2) betas - an afni bucket with just the beta weights.
+3) matrix.1D - the design matrix in 1D format. This can be displayed via a call to '1Dplot' in the terminal.
+4) X.jpg - the design matrix in .jpg format.
+
+* 3Dinfo is called to display the contents of the fullstats bucket in the terminal.
 
 ***
 
