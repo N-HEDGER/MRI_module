@@ -147,7 +147,7 @@ def FIRPIPE():
 	# ---2) Get event files and functional data
 	EVENTFILES=input('Please drag in the directory of 3 column event files\n')
 	EVENTFILES2=EVENTFILES.strip('\'"')
-	func=input('Please drag in the pre-processed functional data\n')
+	func=raw_input('Please drag in the pre-processed functional data\n')
 	func2=func.strip('\'"')
 	NIFTIDIR=os.path.split(func2)[0]
 
