@@ -113,4 +113,107 @@ def L1PIPE():
 	workflow.write_graph(graph2use='exec')
 	workflow.run()
 
+
+
+#--- Goal of the function:
+# Use AFNI and utility functions to obtain TENT functions for a set of regressors
+
+# Inputs:
+# Pre-processed functional data (output of FUNCPIPE or equivalent)
+# Directory of 3 column event files
+
+# Outputs:
+# / AFNIFYTXT - Text files converted to AFNI format
+# / AFNIFYCMD - 1) .jpg file of design matrix 2) 1D file of design matrix 3) .BRIK - beta weights for the TENT functions.
+# The contents (3Dinfo) of the BRIK is printed to the ipython terminal.
+
+# Requires afni, nipype, nilearn, matplotlib
+
+#  --- Details
+# ANFI adds a constant term and linear term to the model
+# The output data is stored in afni format and nii format.
+
+
+def FIRIPE(): 
+	# ---1) Import modules
+	import nipype.pipeline.engine as pe
+	import glob
+	from nipype import Function
+	import nipype.interfaces.utility as util
+	import os
+	import numpy as np
+	from nipype.interfaces.utility import Merge
+
+	# ---2) Get event files and functional data
+	EVENTFILES=input('Please drag in the directory of 3 column event files\n')
+	EVENTFILES2=EVENTFILES.strip('\'"')
+	func=input('Please drag in the pre-processed functional data\n')
+	func2=func.strip('\'"')
+	NIFTIDIR=os.path.split(func2)[0]
+
+	# ---3) Setup input node
+	inputnode = pe.Node(interface=util.IdentityInterface(fields=['eventdir','func']),name='inputspec')
+
+	inputnode.inputs.functional=func2
+	inputnode.inputs.eventdir=EVENTFILES2
+
+
+	# ---4) Setup function for converting FSL files to AFNI format.
+	def fsl2afni(dir):
+		import os
+		import numpy as np
+		import glob
+		infiles=glob.glob(dir + '/*')
+		infiles=sorted(infiles)
+		filename = []
+		for infile in range(0,len(infiles)):
+			print (infiles[infile])
+			with open(infiles[infile],'r') as f:
+		  		LoL=[x.strip().split('\t') for x in f]
+		  	arr=np.array(LoL)
+		  	onsets=arr[:,0]
+		  	int_lst_onsets = np.transpose([int(float(x)) for x in onsets])
+		  	print (int_lst_onsets)
+		  	filename.append(os.getcwd()+'/'+os.path.splitext(os.path.split(infiles[infile])[1])[0]+'_afni.txt')
+		  	np.savetxt(filename[infile],int_lst_onsets,newline=" ")
+	  	return filename
+		
+
+	afnifytxt=pe.Node(Function(input_names=['dir'],output_names='filename',function=fsl2afni),name='AFNIFYTXT')
+
+
+	# ---4) Now use all this information to pass the 3Ddeconvolve command to the command line.
+
+	def afnistring(filenames,func):
+		import os
+		afnistr = []
+		for infile in range(0,len(filenames)):
+			afnistr.append('-stim_times' + ' ' + str(infile+1) + ' ' + filenames[infile] + ' ' + "'TENT(0,12,7)'" + ' ' + '-stim_label' + ' ' + str(infile+1) + ' ' + os.path.splitext(os.path.split(filenames[infile])[1])[0])
+			print (afnistr[infile])
+		afnicmd=' '.join(afnistr)
+		precmd='3dDeconvolve -input' + ' ' + func + ' ' '-bucket' + ' ' + 'output.nii' + ' ' + '-num_stimts' + ' ' + str(len(filenames))
+		acmd= '-xjpeg X.jpg -fout -tout -bout -x1D matrix -cbucket TENTs'
+		cmd=' '.join([precmd,afnicmd])
+		cmd2=' '.join([cmd,acmd])
+		os.system(cmd2)
+		os.system('3Dinfo -verb TENTS')
+		return cmd2
+
+
+	afnifycmd=pe.Node(Function(input_names=['filenames','func'],output_names='cmd2',function=afnistring),name='AFNIFYCMD')
+
+
+	workflow = pe.Workflow(name='FIRPIPE')
+	workflow.base_dir = NIFTIDIR
+	workflow.write_graph(graph2use='exec')
+
+	workflow.connect(inputnode,'eventdir',afnifytxt,'dir')
+	workflow.connect(afnifytxt,'filename',afnifycmd,'filenames')
+	workflow.connect(inputnode,'functional',afnifycmd,'func')
+
+	# Change the config, otherwise all the afni outputs are deleted. 
+	workflow.config['execution'] = {'remove_unnecessary_outputs': 'False'}
+
+	workflow.run()
+
 	
