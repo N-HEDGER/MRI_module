@@ -207,7 +207,7 @@ def ROIPARAMS():
 		mystr = []
 		for instr in range(0,len(my_datalabels)):
 			start=my_datalabels[instr].index('[')+1
-			end=my_datalabels[instr].index('#')
+			end=my_datalabels[instr].index('.')
 			mystr.append(my_datalabels[instr][start:end])
 		used = set()
 		unique = [x for x in mystr if x not in used and (used.add(x) or True)]
