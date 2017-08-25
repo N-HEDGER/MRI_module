@@ -6,7 +6,7 @@
 
 ### Specifications and requirements
 The fMRI virtual machine is configured with *~4GB* of RAM, a virtual hard disk that will grow to **50GB** in size and shared networking.
-It will require a **64 bit** operating system to run. A computer with at least *8GB* RAM is recommended to run the machine.
+It will require a **64 bit** operating system to run. A computer with at least *4GB* RAM is recommended to run the machine.
 
 ### Details
 | | | 
@@ -22,7 +22,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 1. First of all, follow the installation instructions on the VirtualBox website to install VirtualBox on your computer.
 
-2. Next, download the fMRI virtual machine from [this address](https://drive.google.com/open?id=0B6MT4TSJ7f53VU1XcnhySUY2aDg) (this is a large file (around 10GB) and so may take quite a while to download).
+2. Next, download the fMRI virtual machine from [this address](https://drive.google.com/open?id=0B6MT4TSJ7f53UFN6UndmWFJSdGc) (this is a large file (around 10GB) and so may take quite a while to download).
 
 3. Next, open the VirtualBox application and go to *file - import appliance*. Select the .ova file you downloaded in step 2 (below) and continue with all the default options.
 
@@ -50,7 +50,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 ### Configuring the memory allocated to the VM.
 
-* By default, 4GB of memory will allocated to the machine. You may want to allocate more (or less) depending on the memory specs of your personal computer. 
+* By default, 1.9 GB of memory will allocated to the machine. You may want to allocate more (or less) depending on the memory specs of your personal computer. 
 
 * To do this, before booting the machine, highlight it and navigate to *settings - system*. You will then be given the option to alter the memory that is allocated to the machine via a slider (below). It is not recommended that you allocate any more memory than is indicated by the green region of the slider.
 
@@ -58,7 +58,29 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 ![alt text](https://i.imgbox.com/VBmAJF9G.png "Title")
 
 
-* In general, anything below 2GB RAM is likely to cause the VM to run very slowly. I wouldn't recommend anything below 4GB. 
+* In general, anything below 1GB RAM is likely to cause the VM to run very slowly.
+
+### Adding additional storage to the VM.
+
+* For practical reasons, the VM hard disk will only grow to 50GB in size. This is fine for experimenting with a small amount of data but may prove insufficient for large scale projects.
+
+* It is straightforward to add additional virtual hard disks to the machine. You are only limited by the storage space available on the host machine.
+
+1. When the machine is powered off, right click on the VM in the virtualbox window and navigate to *settings-storage*.
+2. In the 'storage tree', click on Controller: SATA and press the floppy disk icon with a green plus symbol.
+3. Select *add hard disk*
+4. Select *VHD*
+5. Select *fixed size*
+6. Allocate the storage space you require on the new disk.
+7. After the disk has been created it will appear as an instance in the storage tree.
+8. Highlight it and check the 'Hot pluggable' option.
+9. Click ok to save these new settings.
+10. Now boot the VM and log on. 
+11. Use the *search your computer* widget in the side bar to search for an application called *Disks*. Open this application.
+12. Select your newly created drive. Make very sure that you are selecting the new drive, or you could delete your existing data with the following steps. 
+12. Click the gear icon (under Volumes), select *Format Partition*, make your selections (the defaults are fine), name the drive, and click *Format*. When prompted, click Format a second time, and the drive will be formatted and ready to use.
+13. When you next open the file explorer, the new drive will appear under the main 'Computer' hard disk.
+
 
 ### Maintaining the python environment
 
