@@ -197,6 +197,7 @@ def FIRPIPE():
 		cmd2=' '.join([cmd,acmd])
 		os.system(cmd2)
 		os.system('3dinfo -verb fullstats')
+		os.system('1dplot matrix.xmat.1D')
 		return cmd2
 
 
