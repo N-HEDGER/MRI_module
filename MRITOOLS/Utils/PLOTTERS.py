@@ -144,10 +144,122 @@ def PLOTHRFS():
 	os.chdir(INITDIR)
 
 
+#--- Goal of the function:
+# Use AFNI 3Dinfo to get mean HRF within an ROI. Plot the HRF for each regressor
+
+# Inputs:
+
+# 1) BRIK of beta weights (output of FIRPIPE)
+# 2) Binary masks (iterable - can be entered as a comma, seperated vector[mask1,mask2]) 
+
+# Outputs:
+# /ROISTATS .csv file of mean beta weight within the ROI defined by the mask.
+# A plot is returned displaying the mean beta weights for the HRF within the ROI.
+
+# Requires nipype, afni, numpy, matplotlib
+
+#--- Details
+# The values on the x axis correspond to the default values of the TENT command for FIR pipe (0,12,7)
+# These are 7 linearly spaced values between 0 and 12 seconds from STIM onset
+
+
+def ROIPARAMS():
+	import nipype.pipeline.engine as pe
+	import glob
+	from nipype import Function
+	import nipype.interfaces.utility as util
+	import os
+	import numpy as np
+	from nipype.interfaces.utility import Merge
+	from nipype.interfaces import afni as afni
+
+	INITDIR=os.getcwd();
+
+	BETAS=input('Please drag in the BRIK of beta weights\n')
+	BETAS2=BETAS.strip('\'"')
+	mask2=input('Please drag in the ROI mask\n')
+
+
+	inputnode = pe.Node(interface=util.IdentityInterface(fields=['BETAS','MASKS']),name='inputspec')
+
+
+	if type(mask2) == str:
+		inputnode.inputs.MASKS=mask2
+		NIFTIDIR=os.path.split(mask2)[0]
+		os.chdir(mask2)
+	elif type(mask2) == list:
+		inputnode.iterables=([('MASKS',mask2)])
+		NIFTIDIR=os.path.split(mask2[0])[0]
+		os.chdir(NIFTIDIR)
+
+	inputnode.inputs.BETAS=BETAS2
+
+
+	ROIINFO=pe.Node(interface=afni.ROIStats(),name='ROISTATS')
+
+
+	def PLOTTENTSINROI(in_file,maskname):
+		import matplotlib.pyplot as plt
+		import numpy as np
+		import os
+		my_data2 = np.loadtxt(fname=in_file,delimiter='\t',comments='!',usecols=(2,),skiprows=3)
+		my_datalabels = np.genfromtxt(fname=in_file,delimiter='\t',comments='!',usecols=(1,),skip_header=3,dtype=None)
+		mystr = []
+		for instr in range(0,len(my_datalabels)):
+			start=my_datalabels[instr].index('[')+1
+			end=my_datalabels[instr].index('#')
+			mystr.append(my_datalabels[instr][start:end])
+		used = set()
+		unique = [x for x in mystr if x not in used and (used.add(x) or True)]
+		fig, ax = plt.subplots(figsize=(10, 10))
+		st=np.linspace(0,len(my_data2)-(len(my_data2)/len(unique)),len(unique))
+		from matplotlib.pyplot import cm 
+		import numpy as np
+		plt.style.use('ggplot')
+		plt.tight_layout()
+		title=os.path.split(maskname)[1]
+		fig.suptitle(title)
+		ax1=plt.subplot2grid((2,len(unique)),(0,0),colspan=len(unique))
+		color=cm.rainbow(np.linspace(0,1,len(unique)))
+		for lines in range(0,len(unique)):
+			xax=np.linspace(1,(len(my_data2)/len(unique)),(len(my_data2)/len(unique)))
+			print(lines)
+			ax=plt.subplot2grid((2,len(unique)),(1,lines))
+			ax1.plot(xax,my_data2[st[lines]:st[lines]+(len(my_data2)/len(unique))],c=color[lines])
+			ax1.plot(xax,my_data2[st[lines]:st[lines]+(len(my_data2)/len(unique))],'*',c=color[lines])
+			x=my_data2[st[lines]:st[lines]+(len(my_data2)/len(unique))]
+			ax.set_ylim([min(my_data2),max(my_data2)])
+			ax.set_xlim([min(xax),max(xax)])
+			ax.set_title(unique[lines])
+			ax.set_ylabel('Beta weight')
+			ax.set_xlabel('Time from onset')
+			ax.plot(xax, x, '--', linewidth=3,c=color[lines])
+			ax.plot(xax, x, '*', linewidth=4,c=color[lines])
+		plt.show()
 
 
 
+	plotter = pe.Node(Function(input_names=['in_file','maskname'],output_names=['fig'],function=PLOTTENTSINROI),name='PLOTROI')
 
+
+	workflow = pe.Workflow(name='ROISTATS')
+	workflow.base_dir = os.getcwd()
+
+
+	workflow.connect(inputnode,'BETAS',ROIINFO,'in_file')
+	workflow.connect(inputnode,'MASKS',ROIINFO,'mask')
+	workflow.connect(inputnode,'MASKS',plotter,'maskname')
+	workflow.connect(ROIINFO,'stats',plotter,'in_file')
+
+
+	workflow.write_graph(graph2use='exec')
+
+	result=workflow.run()
+
+
+	print "Node completed. Returning to intital directory\n"
+
+	os.chdir(INITDIR)
 
 
 
