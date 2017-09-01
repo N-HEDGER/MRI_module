@@ -5,7 +5,7 @@
 ![alt text](https://i.imgbox.com/GgMktKyo.png "Title")
 
 ### Specifications and requirements
-The fMRI virtual machine is configured with *~4GB* of RAM, a virtual hard disk that will grow to **50GB** in size and shared networking.
+The fMRI virtual machine is configured with *~1.9GB* of RAM, a virtual hard disk that will grow to **50GB** in size and shared networking.
 It will require a **64 bit** operating system to run. A computer with at least *4GB* RAM is recommended to run the machine.
 
 ### Details
@@ -62,7 +62,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 ### Adding additional storage to the VM.
 
-* For practical reasons, the VM hard disk will only grow to 50GB in size. This is fine for experimenting with a small amount of data but may prove insufficient for large scale projects.
+* For practical reasons, the default VM hard disk will only grow to 50GB in size. This is fine for experimenting with a small amount of data but may prove insufficient for large scale projects.
 
 * It is straightforward to add additional virtual hard disks to the machine. You are only limited by the storage space available on the host machine.
 
@@ -71,7 +71,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 3. Select *add hard disk*
 4. Select *VHD*
 5. Select *fixed size*
-6. Allocate the storage space you require on the new disk.
+6. Allocate the storage space you require on the new disk (e.g. 20 GB).
 7. After the disk has been created it will appear as an instance in the storage tree.
 8. Highlight it and check the 'Hot pluggable' option.
 9. Click ok to save these new settings.
@@ -84,7 +84,7 @@ The software [VirtualBox](https://www.virtualbox.org/wiki/Downloads) emulates th
 
 ### Maintaining the python environment
 
-* A python environment (mritool) is activated by deafult via [anaconda](https://www.continuum.io/downloads). This has a number of neuroimaging packages installed (nipype, nilearn, nibabel, MRITOOLS itself).
+* A python environment (mritool) is activated by deafult via [anaconda](https://www.continuum.io/downloads). This has a number of neuroimaging packages installed (nipype, nipy, nilearn, nibabel, MRITOOLS itself).
 
 * [Here](https://drive.google.com/open?id=0B6MT4TSJ7f53cG4xRTNWV2hDRXM) is a list of modules that are installed in this environment and their versions. You can create this list yourself via entering the command: 'conda list' into the terminal.
 
