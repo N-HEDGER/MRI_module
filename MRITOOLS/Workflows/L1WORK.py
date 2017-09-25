@@ -152,7 +152,7 @@ def FIRPIPE():
 	NIFTIDIR=os.path.split(func2)[0]
 
 	# ---3) Setup input node
-	inputnode = pe.Node(interface=util.IdentityInterface(fields=['eventdir','func']),name='inputspec')
+	inputnode = pe.Node(interface=util.IdentityInterface(fields=['eventdir','functional']),name='inputspec')
 
 	inputnode.inputs.functional=func2
 	inputnode.inputs.eventdir=EVENTFILES2
