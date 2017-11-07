@@ -11,7 +11,7 @@ In order to use the analysis tools, you will first need to prepare a system. For
 
 I have prepared a virtual linux machine that will operate on a windows or Mac OS. It's specifications and installation instructions are provided [here](/Hardware). This system is prepared with an ANACONDA environment with all the required python modules, including MRITOOLS itself.  
 
-### 2) Usethe linux machines in the PG hub.
+### 2) Use the linux machine in the PG hub.
 
 UOS-210028 is equipped with memory specifications that will exceed your own personal computer. This system (Linux Redhat Enterprise) is prepared with an ANACONDA environment with all the required python modules, including MRITOOLS itself.
 
