@@ -13,9 +13,6 @@
 
 # Requires nipype, nilearn, matplotlib
 
-#--- Details
-# Uses the Glover hrf (response to 1s auditory stimulus)
-
 
 
 def INSPECTOR():
@@ -55,11 +52,16 @@ def INSPECTOR():
 		import nibabel as nib
 		from nilearn import image
 		import os
+		import pandas as pd
 		nifti = nib.load(in_file)
 		SHAPE= image.load_img(in_file).shape
 		AFFINE = nifti.affine
 		VOXSIZE = nifti.header['pixdim'][1:4]
 		TR = (nifti.header['pixdim'][4:5])
+
+
+
+
 		filename1=os.getcwd()+'/'+'AFFINE_info.txt'
 		filename2=os.getcwd()+'/'+'SHAPE_info.txt'
 		filename3=os.getcwd()+'/'+'VOXSIZE_info.txt'
@@ -82,3 +84,59 @@ def INSPECTOR():
 	print "Node completed. Returning to intital directory\n"
 
 	os.chdir(INITDIR)
+
+
+
+
+
+
+def fprintf(stream, format_spec, *args):
+	stream.write(format_spec % args)
+
+
+def findniftis(FOLDER,ext):
+    def fprintf(stream, format_spec, *args):
+        stream.write(format_spec % args)
+    import os
+    import sys
+    niftilist=list()
+    for file in os.listdir(FOLDER):
+        if file.endswith(ext):
+            niftilist.append(FOLDER+"/"+file)
+    fprintf(sys.stdout, "Found %d nifti files", len(niftilist))
+    return(niftilist)
+
+
+def getinfolist(niftilist):
+    import numpy as np
+    import nibabel as nib
+    from nilearn import image
+    import os
+    import pandas as pd
+    
+    
+    b=list()
+    for file in niftilist :
+        nifti = nib.load(file)
+        SHAPE= image.load_img(file).shape
+        VOXSIZE = nifti.header['pixdim'][1:4]
+        TR = (nifti.header['pixdim'][4:5])
+        VOXFRAME=pd.DataFrame(VOXSIZE)
+        VOXFRAME=VOXFRAME.T
+        SHAPEFRAME=pd.DataFrame(SHAPE)
+        SHAPEFRAME=SHAPEFRAME.T
+        TR = (nifti.header['pixdim'][4:5])[0]
+        VOXFRAME.columns=['Voxsize1','Voxsize2','Voxsize3']
+        SHAPEFRAME.columns=['Shape1','Shape2','Shape3']     
+        CFRAMEi=pd.concat([VOXFRAME,SHAPEFRAME],axis=1)
+        CFRAMEi['TR'] = TR 
+        CFRAMEi['FILE'] = os.path.split(file)[1]
+     
+        b.append(CFRAMEi)
+    CFRAME=pd.concat(b)
+    return CFRAME
+
+
+
+
+
