@@ -104,7 +104,7 @@ def findniftis(FOLDER,ext):
         if file.endswith(ext):
             niftilist.append(FOLDER+"/"+file)
     fprintf(sys.stdout, "Found %d nifti files", len(niftilist))
-    return(niftilist)
+    return(sorted(niftilist))
 
 
 def getinfolist(niftilist):
@@ -126,8 +126,12 @@ def getinfolist(niftilist):
         SHAPEFRAME=pd.DataFrame(SHAPE)
         SHAPEFRAME=SHAPEFRAME.T
         TR = (nifti.header['pixdim'][4:5])[0]
-        VOXFRAME.columns=['Voxsize1','Voxsize2','Voxsize3']
-        SHAPEFRAME.columns=['Shape1','Shape2','Shape3']     
+        VOXFRAME.columns=['VoxsizeX','VoxsizeY','VoxsizeZ']
+
+        if len(shape)==4:
+        	SHAPEFRAME.columns=['ShapeX','ShapeY','ShapeZ','Volumes']
+        elif len(shape)==3:
+       		SHAPEFRAME.columns=['ShapeX','ShapeY','ShapeZ']
         CFRAMEi=pd.concat([VOXFRAME,SHAPEFRAME],axis=1)
         CFRAMEi['TR'] = TR 
         CFRAMEi['FILE'] = os.path.split(file)[1]
