@@ -263,6 +263,20 @@ def ROIPARAMS():
 
 
 
+def bplot(in_file):
+	from nilearn import image
+	from nilearn import plotting
+	import matplotlib
+	niftifiledim=len(image.load_img(in_file).shape)
+	if niftifiledim == 3:
+		display=plotting.plot_anat(in_file)
+		matplotlib.pyplot.show()
+	else:
+		firstim=image.index_img(in_file, 0)
+		display=plotting.plot_anat(firstim)
+		matplotlib.pyplot.show()
+	return niftifiledim
+
 
 
 
