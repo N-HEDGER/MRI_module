@@ -128,9 +128,9 @@ def getinfolist(niftilist):
         TR = (nifti.header['pixdim'][4:5])[0]
         VOXFRAME.columns=['VoxsizeX','VoxsizeY','VoxsizeZ']
 
-        if len(shape)==4:
+        if len(SHAPE)==4:
         	SHAPEFRAME.columns=['ShapeX','ShapeY','ShapeZ','Volumes']
-        elif len(shape)==3:
+        elif len(SHAPE)==3:
        		SHAPEFRAME.columns=['ShapeX','ShapeY','ShapeZ']
         CFRAMEi=pd.concat([VOXFRAME,SHAPEFRAME],axis=1)
         CFRAMEi['TR'] = TR 
